@@ -24,3 +24,10 @@ Obs: Caso você tenha instalado uma versão de desenvolvimento antes, é preciso
 
 Mais detalhes:
 https://reactnative.dev/docs/running-on-device
+
+
+## USO
+As requisições HTTP estão configuradas com um servidor aleatório, para apontar pra um servidor correto há 2 opções:
+1. Alterar o endereço no arquivo database/Remote.js
+2. Na tela de login, tocar no logo(imagem logo acima do campo de usuário) que irá abrir uma tela para inserir o servidor.
+
