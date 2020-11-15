@@ -9,7 +9,7 @@ import {
 } from 'react-native-ui-lib';
 
 import UserPasswordInput from '../components/UserPasswordInput';
-import { CORES, STATUS } from '../constants';
+import { COLORS, STATUS } from '../constants';
 
 import Remote from '../database/Remote';
 
@@ -107,7 +107,7 @@ export default class CreateAccountScreen extends React.Component {
     render() {
         const shouldShow = [STATUS.PROGRESS, STATUS.SUCCESS, STATUS.ERROR].includes(this.state.requeststatus);
         return (
-            <View flex spread paddingH-20 paddingV-10 >
+            <View flex spread paddingH-10 paddingV-10 >
                 <Text text60 marginB-10>Para liberar seu acesso, precisamos que nos informe alguns dados sobre você.</Text>
                 <KeyboardAwareScrollView
                     showsVerticalScrollIndicator={false}
@@ -132,9 +132,9 @@ export default class CreateAccountScreen extends React.Component {
                         title={'Nome completo'}
                         placeholder={'Nome completo'}
                         helperText={'Nome completo'}
-                        titleColor={CORES.azulSus}
+                        titleColor={COLORS.azulSus}
                         floatingPlaceholder={true}
-                        floatingPlaceholderColor={CORES.azulSus}
+                        floatingPlaceholderColor={COLORS.azulSus}
                         onSubmitEditing={() => { this.emailField.current.focus() }}
                         blurOnSubmit={false}
                         value={this.state.name}
@@ -149,9 +149,9 @@ export default class CreateAccountScreen extends React.Component {
                         title={'E-mail'}
                         placeholder={'E-mail'}
                         helperText={'E-mail'}
-                        titleColor={CORES.azulSus}
+                        titleColor={COLORS.azulSus}
                         floatingPlaceholder={true}
-                        floatingPlaceholderColor={CORES.azulSus}
+                        floatingPlaceholderColor={COLORS.azulSus}
                         keyboardType={'email-address'}
                         blurOnSubmit={false}
                         onSubmitEditing={() => { this.passwordField.current.focus(); }}
@@ -164,12 +164,12 @@ export default class CreateAccountScreen extends React.Component {
                         br20
                         disabled={this.state.requeststatus === STATUS.PROGRESS}
                         marginT-10
-                        backgroundColor={CORES.azulSus}
+                        backgroundColor={COLORS.azulSus}
                         label={'Cadastrar'}
                         onPress={this.startRegistry}
                     >
                         <View >
-                            <ActivityIndicator style={{ marginHorizontal: 0 }} size="small" color={CORES.azulSus} />
+                            <ActivityIndicator style={{ marginHorizontal: 0 }} size="small" color={COLORS.azulSus} />
                         </View>
                     </Button>
                 </KeyboardAwareScrollView>

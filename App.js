@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { NavigationContainer, NavigationContext } from '@react-navigation/native';
+import { LogBox } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginScreen from './screens/LoginScreen';
@@ -9,11 +11,21 @@ import HomeScreen from './screens/HomeScreen';
 import SplashScreen from './screens/SplashScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 
-import { ROTAS } from './constants';
+import AppointmentScreen from './screens/AppointmentScreen';
+import MedicalRecordScreen from './screens/MedicalRecordScreen';
+import MedicationScreen from './screens/MedicationScreen';
+
+import { ROUTES } from './constants';
 
 import * as LocalRepository from './database/Local';
 
 import { AuthProvider } from './AuthContext';
+
+import Moment from 'moment';
+import momentPT from 'moment/locale/pt';
+Moment.updateLocale('pt', momentPT);
+
+LogBox.ignoreLogs(['Deprecation warning: use moment.updateLocale']);
 
 const Stack = createStackNavigator();
 
@@ -32,7 +44,7 @@ const noHeaderWithBackButton = {
 
 const config = {
   screens: {
-    [ROTAS.resetPassword]: `${ROTAS.resetPassword}/:hash`,
+    [ROUTES.resetPassword]: `${ROUTES.resetPassword}/:hash`,
   },
 };
 
@@ -43,41 +55,77 @@ const linking = {
 
 const mountOpenRoutes = () => {
   return (
-    <>
+    <Stack.Navigator>
       <Stack.Screen
         options={noHeader}
-        name={ROTAS.login}
+        name={ROUTES.login}
         component={LoginScreen}
       />
       <Stack.Screen
         options={noHeaderWithBackButton}
-        name={ROTAS.createAccount}
+        name={ROUTES.createAccount}
         component={CreateAccountScreen}
       />
       <Stack.Screen
         options={noHeaderWithBackButton}
-        name={ROTAS.resetPassword}
+        name={ROUTES.resetPassword}
         component={ResetPasswordScreen}
       />
       <Stack.Screen
         options={noHeaderWithBackButton}
-        name={ROTAS.forgotPassword}
+        name={ROUTES.forgotPassword}
         component={ForgotPasswordScreen}
       />
-    </>
+    </Stack.Navigator>
   );
 }
 
 const mountRestrictedRoutes = userData => {
   return (
-    <>
+    <Stack.Navigator
+      screenOptions={{
+        cardStyle: { backgroundColor: 'white' },
+      }}
+    >
       <Stack.Screen
         options={noHeader}
-        name={ROTAS.home}
+        name={ROUTES.restricted.home}
         component={HomeScreen}
         initialParams={userData}
       />
-    </>
+      <Stack.Screen
+        options={noHeaderWithBackButton}
+        name={ROUTES.restricted.appointment}
+        component={AppointmentScreen}
+        initialParams={userData}
+      />
+      <Stack.Screen
+        options={noHeaderWithBackButton}
+        name={ROUTES.restricted.medicalRecord}
+        component={MedicalRecordScreen}
+        initialParams={userData}
+      />
+      <Stack.Screen
+        options={noHeaderWithBackButton}
+        name={ROUTES.restricted.medication}
+        component={MedicationScreen}
+        initialParams={userData}
+      />
+
+    </Stack.Navigator>
+  );
+}
+
+const mountOpeningRoutes = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen options={noHeader} name="Splash" component={SplashScreen} />
+      <Stack.Screen
+        options={noHeaderWithBackButton}
+        name={ROUTES.resetPassword}
+        component={ForgotPasswordScreen}
+      />
+    </Stack.Navigator>
   );
 }
 
@@ -118,19 +166,10 @@ function App() {
   return (
     <AuthProvider value={authContext}>
       <NavigationContainer linking={linking}>
-        <Stack.Navigator>
-          {isLoading ? (
-            <>
-              <Stack.Screen options={noHeader} name="Splash" component={SplashScreen} />
-              <Stack.Screen
-                options={noHeaderWithBackButton}
-                name={ROTAS.resetPassword}
-                component={ForgotPasswordScreen}
-              />
-            </>
-          ) : hasToken ? mountRestrictedRoutes(userData) : mountOpenRoutes()
-          }
-        </Stack.Navigator>
+        {isLoading ? (
+          mountOpeningRoutes()
+        ) : hasToken ? mountRestrictedRoutes(userData) : mountOpenRoutes()
+        }
       </NavigationContainer>
     </AuthProvider>
   );

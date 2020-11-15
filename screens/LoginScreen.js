@@ -11,7 +11,7 @@ import {
 import Dialog from "react-native-dialog";
 
 import Remote from '../database/Remote';
-import { ROTAS, CORES } from '../constants';
+import { ROUTES, COLORS } from '../constants';
 import UserPasswordInput from '../components/UserPasswordInput';
 
 import AuthContext from '../AuthContext';
@@ -34,11 +34,11 @@ export default class LoginScreen extends React.Component {
     }
 
     goToForgotPasswordScreen = () => {
-        this.props.navigation.navigate(ROTAS.forgotPassword, { user: this.state.user });
+        this.props.navigation.navigate(ROUTES.forgotPassword, { user: this.state.user });
     }
 
     gotToCreateAccountScreen = () => {
-        this.props.navigation.navigate(ROTAS.createAccount);
+        this.props.navigation.navigate(ROUTES.createAccount);
     }
 
     login = async () => {
@@ -110,9 +110,9 @@ export default class LoginScreen extends React.Component {
 
     render() {
         return (
-            <View flex spread paddingH-20 paddingV-10 >
+            <View flex spread paddingH-10 paddingV-10 >
                 {this.mountChangeServerPrompt()}
-                <Text center uppercase text30 style={{ fontWeight: 'bold' }} color={CORES.azulSus}>Agenda</Text>
+                <Text center uppercase text30 style={{ fontWeight: 'bold' }} color={COLORS.azulSus}>Agenda</Text>
                 <View center >
                     <TouchableWithoutFeedback onPress={() => this.setState({ showServerAddAlert: true })}>
                         <Image center source={require('../images/Logo_SUS.svg.png')}
@@ -141,9 +141,9 @@ export default class LoginScreen extends React.Component {
                         title={'Usuário'}
                         placeholder={'Usuário'}
                         helperText={'Usuário'}
-                        titleColor={CORES.azulSus}
+                        titleColor={COLORS.azulSus}
                         floatingPlaceholder={true}
-                        floatingPlaceholderColor={CORES.azulSus}
+                        floatingPlaceholderColor={COLORS.azulSus}
                         value={this.state.user}
                         onChangeText={user => this.setState({ user })}
                         maxLength={150}
@@ -154,15 +154,15 @@ export default class LoginScreen extends React.Component {
                     />
                     <UserPasswordInput ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
                     <View flex right marginB-20>
-                        <Button disabled={this.state.sendingRequest} link linkColor={CORES.azulSus} backgroundColor={CORES.azulSus} label={'Esqueci minha senha'} onPress={this.goToForgotPasswordScreen} />
+                        <Button disabled={this.state.sendingRequest} link linkColor={COLORS.azulSus} backgroundColor={COLORS.azulSus} label={'Esqueci minha senha'} onPress={this.goToForgotPasswordScreen} />
                     </View>
                     <View flex spread marginB-20>
-                        <Button br20 disabled={this.state.sendingRequest} backgroundColor={CORES.azulSus} label={'Entrar'} onPress={this.login} />
+                        <Button br20 disabled={this.state.sendingRequest} backgroundColor={COLORS.azulSus} label={'Entrar'} onPress={this.login} />
                     </View>
 
                     <View flex row center>
-                        <Text center text70 color={this.state.sendingRequest ? CORES.cinzaDesabilitado : 'black'}> Ainda não tem acesso? </Text>
-                        <Button disabled={this.state.sendingRequest} link linkColor={CORES.azulSus} label={'Criar conta.'} onPress={this.gotToCreateAccountScreen} />
+                        <Text center text70 color={this.state.sendingRequest ? COLORS.cinzaDesabilitado : 'black'}> Ainda não tem acesso? </Text>
+                        <Button disabled={this.state.sendingRequest} link linkColor={COLORS.azulSus} label={'Criar conta.'} onPress={this.gotToCreateAccountScreen} />
                     </View>
                 </KeyboardAwareScrollView>
             </View>
