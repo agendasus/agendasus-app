@@ -36,7 +36,6 @@ export default Remote = {
             let error = await result.text();
             error = JSON.parse(error);
             const reason = error.response.stackTrace[0].methodName;
-            // throw new Error(erro);
             return { error: reason };
         }
     },
