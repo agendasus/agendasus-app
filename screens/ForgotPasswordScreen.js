@@ -3,7 +3,7 @@ import { Alert, } from "react-native";
 import { Text, View, Button, TextField, KeyboardAwareScrollView } from 'react-native-ui-lib';
 import ModalResult from '../components/ModalResult';
 
-import { CORES, STATUS } from '../constants';
+import { COLORS, STATUS } from '../constants';
 import Remote from '../database/Remote';
 
 export default class ResetPasswordScreen extends React.Component {
@@ -81,7 +81,7 @@ export default class ResetPasswordScreen extends React.Component {
             STATUS.ERROR,
         ].includes(requestStatus);
         return (
-            <View flex spread paddingH-20 paddingV-10 >
+            <View flex spread paddingH-10 paddingV-10 >
                 <Text text60 marginB-10>
                     Você esqueceu sua password? Não tem problema. Nos diga qual o usuário
                     você deseja redefinir a senha.
@@ -104,15 +104,15 @@ export default class ResetPasswordScreen extends React.Component {
                         title={'Usuário'}
                         placeholder={'Usuário'}
                         helperText={'Usuário'}
-                        titleColor={CORES.azulSus}
+                        titleColor={COLORS.azulSus}
                         floatingPlaceholder={true}
-                        floatingPlaceholderColor={CORES.azulSus}
+                        floatingPlaceholderColor={COLORS.azulSus}
                         onChangeText={this.changeUser}
                         maxLength={150}
                     />
                     <Button
                         br20
-                        backgroundColor={CORES.azulSus}
+                        backgroundColor={COLORS.azulSus}
                         label={'Redefinir senha'}
                         onPress={this.startResetPasswordProccess}
                     />

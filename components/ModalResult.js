@@ -10,7 +10,7 @@ import {
     Image,
 } from "react-native";
 
-import { CORES, STATUS } from '../constants';
+import { COLORS, STATUS } from '../constants';
 
 export default class ModalResult extends React.Component {
     mountModalContent = () => {
@@ -18,7 +18,7 @@ export default class ModalResult extends React.Component {
             return (
                 <>
                     <Text text60> {this.props.titulo}</Text>
-                    <ActivityIndicator color={CORES.azulSus} size="large" />
+                    <ActivityIndicator color={COLORS.azulSus} size="large" />
                 </>
             );
         }
@@ -40,7 +40,7 @@ export default class ModalResult extends React.Component {
                 />
                 <Text text60 marginV-20>{this.props.description}</Text>
                 <Button
-                    backgroundColor={CORES.azulSus}
+                    backgroundColor={COLORS.azulSus}
                     label='Fechar'
                     onPress={this.props.close}
                 />

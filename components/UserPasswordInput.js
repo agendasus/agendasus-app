@@ -4,7 +4,7 @@ import {
     View,
 } from 'react-native-ui-lib';
 
-import { CORES } from '../constants';
+import { COLORS } from '../constants';
 
 export default class UserPasswordInput extends React.Component {
 
@@ -49,9 +49,9 @@ export default class UserPasswordInput extends React.Component {
                     paddingB10
                     keyboardType={'numeric'}
                     title={'Senha'}
-                    titleColor={CORES.azulSus}
+                    titleColor={COLORS.azulSus}
                     floatingPlaceholder={true}
-                    floatingPlaceholderColor={CORES.azulSus}
+                    floatingPlaceholderColor={COLORS.azulSus}
                     placeholder={'Senha'}
                     helperText={'Senha'}
                     maxLength={30}

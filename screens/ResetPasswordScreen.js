@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import { Text, View, Button, KeyboardAwareScrollView } from 'react-native-ui-lib';
 import UserPasswordInput from '../components/UserPasswordInput';
-import { ROTAS, CORES, STATUS } from '../constants';
+import { ROUTES, COLORS, STATUS } from '../constants';
 import Remote from '../database/Remote';
 
 export default class ForgotPasswordScreen extends React.Component {
@@ -48,7 +48,7 @@ export default class ForgotPasswordScreen extends React.Component {
             'Sucesso ao redefinir a password',
             'Pronto, você já pode acessar o Agenda SUS normalmente.',
             [
-                { text: 'OK', onPress: () => this.props.navigation.replace(ROTAS.login) }
+                { text: 'OK', onPress: () => this.props.navigation.replace(ROUTES.login) }
             ],
             { cancelable: false }
         );
@@ -68,7 +68,7 @@ export default class ForgotPasswordScreen extends React.Component {
 
     render() {
         return (
-            <View flex spread paddingH-20 paddingV-10 >
+            <View flex spread paddingH-10 paddingV-10 >
                 <Text text60>Para continuar, precisamos que você insira a nova senha.</Text>
                 <KeyboardAwareScrollView
                     showsVerticalScrollIndicator={false}
@@ -85,12 +85,12 @@ export default class ForgotPasswordScreen extends React.Component {
                     <Button
                         disabled={this.state.requeststatus === STATUS.PROGRESS}
                         br20
-                        backgroundColor={CORES.azulSus}
+                        backgroundColor={COLORS.azulSus}
                         label={'Redefinir'}
                         onPress={this.sendResetPasswordRequest}
                     >
                         <View >
-                            <ActivityIndicator style={{ marginHorizontal: 0 }} size="small" color={CORES.azulSus} />
+                            <ActivityIndicator style={{ marginHorizontal: 0 }} size="small" color={COLORS.azulSus} />
                         </View>
                     </Button>
                 </KeyboardAwareScrollView>

@@ -4,6 +4,12 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '10.0'
 
 target 'agendasus' do
+	pod 'SGActionView', :git => 'https://github.com/prscX/SGActionView.git'
+
+  use_native_modules!
+
+ 	pod 'RNBottomActionSheet', :path => '../node_modules/react-native-bottom-action-sheet/ios'
+
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])

@@ -1,13 +1,18 @@
-export const ROTAS = {
+export const ROUTES = {
     login: 'login',
     createAccount: 'createAccount',
     forgotPassword: 'forgotPassword',
     resetPassword: 'resetPassword',
-    home: 'home',
+    restricted: {
+        home: 'home',
+        appointment: 'appointment',
+        medicalRecord: 'medicalRecord',
+        medication: 'medication',
+    },
     splash: 'splash',
 };
 
-export const CORES = {
+export const COLORS = {
     azulSus: '#005496',
     cinzaDesabilitado: '#C2C7CB',
 };
