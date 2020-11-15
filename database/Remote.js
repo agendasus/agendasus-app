@@ -84,7 +84,7 @@ export default Remote = {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ hash, password: password }),
+            body: JSON.stringify({ hash, password }),
         }
         const result = await fetch(`${HOST}/password-recovery`, params);
         const data = await result.json();

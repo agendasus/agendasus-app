@@ -70,12 +70,15 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
-        const { name } = this.props.route.params;
+        const { name, login } = this.props.route.params;
         return (
             <View flex paddingH-10 paddingV-10 backgroundColor={'white'} style={{ borderWidth: 0 }}>
                 <View style={{ borderWidth: 0 }}>
                     <Text text50 color={COLORS.azulSus} style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
                         {`Olá ${name}`}
+                    </Text>
+                    <Text text80 color={COLORS.azulSus} >
+                        {login}
                     </Text>
                 </View>
                 <View flex style={{ borderWidth: 0, borderColor: "red" }}>

@@ -67,7 +67,7 @@ export default class LoginScreen extends React.Component {
     showUserOrPasswordErrorAlert = () => {
         Alert.alert(
             'Falha ao entrar',
-            'Usuário ou password incorretos.',
+            'Usuário ou senha incorretos.',
             [
                 { text: 'OK' }
             ],
