@@ -31,7 +31,7 @@ export default class UserPasswordInput extends React.Component {
         }
         const hasPasswordLengthError = password.length >= 6 && password.length < 30;
         if (!hasPasswordLengthError) {
-            this.setState({ passwordError: 'A password precisa ter entre 6 e 30 caracteres' });
+            this.setState({ passwordError: 'A senha precisa ter entre 6 e 30 caracteres' });
             return false;
         }
         return true;
