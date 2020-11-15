@@ -18,9 +18,9 @@ export default class CreateAccountScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: 'romulo',
-            email: 'romulo@romulo.com',
-            password: '123456',
+            name: '',
+            email: '',
+            password: '',
             nameError: '',
             emailError: '',
             passwordError: '',
@@ -57,15 +57,14 @@ export default class CreateAccountScreen extends React.Component {
             });
             return;
         }
-
         const sendRegistryRequest = async () => {
             try {
-                const { nome, email, password } = this.state;
-                const resultado = await Remote.register({ nome, email, password });
-                if (!resultado || resultado.erro) {
-                    const erroGeral = resultado.erro;
-                    if (erroGeral === 'checkExists') {
-                        this.setState({ situacao: STATUS.ERROR, erroGeral, erroEmail: 'E-mail está em uso.' });
+                const { name, email, password } = this.state;
+                const resultado = await Remote.register({ name, email, password });
+                if (!resultado || resultado.error) {
+                    const generalError = resultado.error;
+                    if (generalError === 'checkExists') {
+                        this.setState({ situacao: STATUS.ERROR, erroGeral: generalError, emailError: 'E-mail está em uso.' });
                     }
                     return;
                 }
@@ -76,7 +75,6 @@ export default class CreateAccountScreen extends React.Component {
                 this.setState({ situacao: STATUS.ERROR });
             }
         }
-
         this.setState({ situacao: STATUS.PROGRESS }, sendRegistryRequest);
     }
 
