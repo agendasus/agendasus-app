@@ -11,6 +11,8 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm install
+      - name: Make gradlew executable
+      run: chmod +x ./gradlew
       - name: Build Android Release
         run: |
           cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='${{ secrets.RELEASE_KEYSTORE }}' -PMYAPP_UPLOAD_KEY_PASSWORD='${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}'
