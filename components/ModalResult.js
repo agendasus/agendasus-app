@@ -17,7 +17,7 @@ export default class ModalResult extends React.Component {
         if (this.props.requestStatus === STATUS.PROGRESS) {
             return (
                 <>
-                    <Text text60> {this.props.titulo}</Text>
+                    <Text text60> {this.props.title}</Text>
                     <ActivityIndicator color={COLORS.azulSus} size="large" />
                 </>
             );
@@ -38,7 +38,7 @@ export default class ModalResult extends React.Component {
                     tintColor={corIcone}
                     resizeMode={'contain'}
                 />
-                <Text text60 marginV-20>{this.props.description}</Text>
+                <Text text60 marginV-20>{this.props.description()}</Text>
                 <Button
                     backgroundColor={COLORS.azulSus}
                     label='Fechar'
