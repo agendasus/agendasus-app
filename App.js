@@ -49,7 +49,7 @@ const config = {
 };
 
 const linking = {
-  prefixes: ['agendasus://'],
+  prefixes: ['http://agendasus.*','http://agendasus-auth.*'],
   config,
 };
 
