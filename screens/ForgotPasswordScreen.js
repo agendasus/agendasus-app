@@ -52,7 +52,7 @@ export default class ResetPasswordScreen extends React.Component {
         );
     }
 
-    fecharModal = () => {
+    closeModal = () => {
         this.setState({ requestStatus: STATUS.INICIAL });
     };
 
@@ -61,15 +61,15 @@ export default class ResetPasswordScreen extends React.Component {
     };
 
     mountModalResultDescription = () => {
-        const { requeststatus } = this.state;
-        if (requeststatus === STATUS.PROGRESS) {
-            return 'Um email será enviado com o guia para redefinição da password.';
+        const { requestStatus } = this.state;
+        if (requestStatus === STATUS.PROGRESS) {
+            return 'Um email será enviado com o guia para redefinição da senha.';
         }
-        if (requeststatus === STATUS.ERROR) {
+        if (requestStatus === STATUS.ERROR) {
             return 'Não foi possível redefinir a password. Tente novamente em alguns instantes.';
         }
-        if (requeststatus === STATUS.SUCCESS) {
-            return 'Enviamos um email com o guia para a redefinição da password.';
+        if (requestStatus === STATUS.SUCCESS) {
+            return 'Enviamos um email com o guia para a redefinição da senha.';
         }
     };
 
@@ -118,11 +118,11 @@ export default class ResetPasswordScreen extends React.Component {
                     />
                 </KeyboardAwareScrollView>
                 <ModalResult
-                    titulo={'Redefinindo senha'}
-                    description={this.mountModalResultDescription()}
+                    title={'Redefinindo senha'}
+                    description={this.mountModalResultDescription}
                     requestStatus={requestStatus}
                     visible={shouldShow}
-                    fechar={this.closeModal}
+                    close={this.closeModal}
                 />
             </View>
         );
