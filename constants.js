@@ -2,7 +2,7 @@ export const ROUTES = {
     login: 'login',
     createAccount: 'createAccount',
     forgotPassword: 'forgotPassword',
-    resetPassword: 'resetPassword',
+    resetPassword: 'password-recovery',
     restricted: {
         home: 'home',
         appointment: 'appointment',
