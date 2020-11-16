@@ -20,7 +20,7 @@ Caso o servidor de codigo não seja iniciado automaticamente:
 ### Para instalar uma versão de produção
 `npx react-native run-android --variant=release`
 
-Obs: Caso você tenha instalado uma versão de desenvolvimento antes, é preciso desinstalar, senão dará erro. Também deve desinstalar a versão de produção caso queira instalar a versão de desenvolvimento.
+Obs: Caso você tenha instalado uma versão de produção antes, e queira voltar a versão de desenvolvimento, é preciso desinstalar a versão de produção antes, senão dará erro.
 
 Mais detalhes:
 https://reactnative.dev/docs/running-on-device
