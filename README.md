@@ -8,7 +8,7 @@ Antes de tudo, é preciso configurar o ambiente para desenvolvimento utilizando 
  <br/>ou 
 <br/>`yarn install`
 
-### Para rodar em ambiente de denvolvimento
+### Para rodar em ambiente de desenvolvimento
 Obs: Não esqueça de devidamente configurar o emulador e/ou o dispositivo antes.
 
 `npx react-native run-android`
@@ -18,9 +18,9 @@ Caso o servidor de codigo não seja iniciado automaticamente:
 `yarn start`
 
 ### Para instalar uma versão de produção
-`npx react-native run-android --variant=release`
+Devido à questões de segurança, veja na seção Security como gerar o apk.
 
-Obs: Caso você tenha instalado uma versão de produção antes, e queira voltar a versão de desenvolvimento, é preciso desinstalar a versão de produção antes, senão dará erro.
+Na seção Release é possível baixar o apk já gerado.
 
 Mais detalhes:
 https://reactnative.dev/docs/running-on-device
