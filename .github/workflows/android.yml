@@ -13,9 +13,13 @@ jobs:
           yarn install
       - name: Make gradlew executable
         run: chmod +x ./android/gradlew
+      - name: Restore keystore
+        run: |
+          echo '${{secrets.RELEASE_KEYSTORE}}' > release.keystore.asc
+          gpg -d --passphrase '${{secrets.RELEASE_KEYSTORE_PASSPHRASE}}' --batch release.keystore.asc > android/app/agendasus.keystore
       - name: Build Android Release
         run: |
-          cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='${{ secrets.RELEASE_KEYSTORE }}' -PMYAPP_UPLOAD_KEY_PASSWORD='${{ secrets.RELEASE_KEYSTORE_PASSPHRASE }}'
+          cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='${{secrets.RELEASE_KEYSTORE_PASSPHRASE}}' -PMYAPP_UPLOAD_KEY_PASSWORD='${{secrets.RELEASE_KEYSTORE_PASSPHRASE}}'
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
