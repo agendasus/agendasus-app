@@ -38,13 +38,4 @@ As requisições HTTP estão configuradas com um servidor aleatório, para apont
 ------------
 
 ## Pendências
-- Configurar as dependências no iOS e deixar o aplicativo funcionando - Não esquecer de deixar o guia de configuração aqui;
-- Alterar a biblioteca de componentes. A RNUILIB é boa, mas parece imatura (documentação precária);
-	Candidatas: 
-
-		https://reactnativepaper.com (tudo fica com cara de Android)
-		https://reactnativeelements.com/  (preferida)
-		https://docs.nativebase.io/ (mais voltada para aplicativo de vendas/loja)
-
-- Adicionar os testes automatizados: toda a piramide;
-- Testar em mais dispositivos com variadas resoluções/tamanhos de tela;
+Na aba Projects.
