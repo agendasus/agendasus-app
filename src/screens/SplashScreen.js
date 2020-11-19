@@ -9,7 +9,7 @@ export default class SplashScreen extends React.Component {
 
     render() {
         return (
-            <LoaderScreen loaderColor={COLORS.azulSus} message={'Agenda SUS'} messageStyle={{ color: COLORS.azulSus, fontSize: 20, fontWeight: 'bold' }}>
+            <LoaderScreen testID={'loading'} loaderColor={COLORS.azulSus} message={'Agenda SUS'} messageStyle={{ color: COLORS.azulSus, fontSize: 20, fontWeight: 'bold' }}>
             </LoaderScreen>
         );
     }

@@ -20,7 +20,7 @@ import { ROUTES } from './constants';
 import * as LocalRepository from './database/Local';
 
 import { AuthProvider } from './AuthContext';
-
+''
 import Moment from 'moment';
 import momentPT from 'moment/locale/pt';
 Moment.updateLocale('pt', momentPT);

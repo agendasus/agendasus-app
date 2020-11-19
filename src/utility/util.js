@@ -18,9 +18,3 @@ export const formatDateWithoutTime = (originalDate = new Date()) => {
     }
     return data.isDST() ? data.subtract(1, 'hour').format(`${DDMMYYYY}`) : data.format(`${DDMMYYYY}`);
 }
-
-export const convertFormattedDateToDateObject = formattedDate => {
-    const data = Moment(formattedDate || new Date(), `${DDMMYYYY}`);
-    return data.toDate();
-}
-
