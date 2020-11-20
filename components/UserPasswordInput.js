@@ -45,6 +45,7 @@ export default class UserPasswordInput extends React.Component {
         return (
             <View paddingB-10 paddingT-5>
                 <TextField
+                    testID={'field_user_password'}
                     text50
                     paddingB10
                     keyboardType={'numeric'}

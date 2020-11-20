@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, TouchableWithoutFeedback, StyleSheet } from "react-native";
+import { Alert, TouchableWithoutFeedback, StyleSheet, ActivityIndicator } from "react-native";
 import {
     View,
     Button,
@@ -137,7 +137,9 @@ export default class LoginScreen extends React.Component {
                     contentContainerStyle={{ paddingTop: 20 }}
                 >
                     <TextField
+                        testID={'field_user'}
                         text50
+                        editable={!this.state.sendingRequest}
                         title={'Usuário'}
                         placeholder={'Usuário'}
                         helperText={'Usuário'}
@@ -152,7 +154,7 @@ export default class LoginScreen extends React.Component {
                         onSubmitEditing={() => { this.passwordField.current.focus() }}
                         blurOnSubmit={false}
                     />
-                    <UserPasswordInput ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
+                    <UserPasswordInput editable={!this.state.sendingRequest} ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
                     <View flex right marginB-20>
                         <Button disabled={this.state.sendingRequest} link linkColor={COLORS.azulSus} backgroundColor={COLORS.azulSus} label={'Esqueci minha senha'} onPress={this.goToForgotPasswordScreen} />
                     </View>
@@ -164,6 +166,9 @@ export default class LoginScreen extends React.Component {
                         <Text center text70 color={this.state.sendingRequest ? COLORS.cinzaDesabilitado : 'black'}> Ainda não tem acesso? </Text>
                         <Button disabled={this.state.sendingRequest} link linkColor={COLORS.azulSus} label={'Criar conta.'} onPress={this.gotToCreateAccountScreen} />
                     </View>
+                    {
+                        this.state.sendingRequest && <ActivityIndicator size={'large'} color={COLORS.azulSus} />
+                    }
                 </KeyboardAwareScrollView>
             </View>
         );
