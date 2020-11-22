@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import { StyleSheet } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { StyleSheet, View } from 'react-native'
+import { Icon } from 'react-native-elements';
 import { COLORS } from '../constants';
 
 export default class FAB extends PureComponent {
@@ -10,25 +10,28 @@ export default class FAB extends PureComponent {
 
     render() {
         return (
-            <Icon
-                color={'white'}
-                borderColor={COLORS.azulSus}
-                size={60}
-                onPress={this.onPress}
+            <View
                 style={styles.containerStyle}
-                {...this.props}
-            />
+            >
+                <Icon
+                    type={'material-community'}
+                    color={COLORS.azulSus}
+                    raised
+                    reverse
+                    size={30}
+                    onPress={this.onPress}
+                    {...this.props}
+                />
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
     containerStyle: {
-        elevation: 10,
-        backgroundColor: COLORS.azulSus,
         position: 'absolute',
-        right: 25,
-        bottom: 21,
+        right: 20,
+        bottom: 10,
         zIndex: 1,
         borderRadius: 50,
     },

@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { View } from "react-native";
 import {
-    TextField,
-    View,
-} from 'react-native-ui-lib';
+    Input,
+} from 'react-native-elements';
 
 import { COLORS } from '../constants';
 
@@ -22,7 +22,7 @@ export default class UserPasswordInput extends React.Component {
         this.props.onChangeText(newValue);
     }
 
-    validar = () => {
+    validate = () => {
         const password = this.props.password;
         const hasRequiredFieldError = !!password;
         if (!hasRequiredFieldError) {
@@ -43,26 +43,20 @@ export default class UserPasswordInput extends React.Component {
 
     render() {
         return (
-            <View paddingB-10 paddingT-5>
-                <TextField
-                    text50
-                    paddingB10
-                    keyboardType={'numeric'}
-                    title={'Senha'}
-                    titleColor={COLORS.azulSus}
-                    floatingPlaceholder={true}
-                    floatingPlaceholderColor={COLORS.azulSus}
-                    placeholder={'Senha'}
-                    helperText={'Senha'}
-                    maxLength={30}
-                    secureTextEntry={true}
-                    {...this.props}
-                    ref={this.inputField}
-                    error={this.state.passwordError}
-                    value={this.props.password}
-                    onChangeText={this.onChangeValue}
-                />
-            </View>
+            <Input
+                keyboardType={'numeric'}
+                label={'Senha'}
+                leftIcon={{ type: 'material-community', name: 'lock', color: COLORS.defaultGray }}
+                floatingPlaceholderColor={COLORS.azulSus}
+                placeholder={'Senha'}
+                maxLength={30}
+                secureTextEntry={true}
+                {...this.props}
+                ref={this.inputField}
+                errorMessage={this.state.passwordError}
+                value={this.props.password}
+                onChangeText={this.onChangeValue}
+            />
         )
     }
 }

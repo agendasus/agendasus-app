@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { Alert, ActivityIndicator, Keyboard } from "react-native";
+import { Alert, StyleSheet, View, Keyboard } from "react-native";
 import {
     Text,
-    View,
     Button,
-    TextField,
-    KeyboardAwareScrollView,
-} from 'react-native-ui-lib';
+    Input,
+} from 'react-native-elements';
 
 import UserPasswordInput from '../components/UserPasswordInput';
 import { COLORS, STATUS } from '../constants';
 
-import Remote from '../database/Remote';
+import * as  Remote from '../database/Remote';
 
 export default class CreateAccountScreen extends React.Component {
 
@@ -28,6 +26,7 @@ export default class CreateAccountScreen extends React.Component {
             generalError: '',
         }
 
+        this.nameField = React.createRef();
         this.passwordField = React.createRef();
         this.emailField = React.createRef();
     }
@@ -49,8 +48,17 @@ export default class CreateAccountScreen extends React.Component {
     }
 
     startRegistry = () => {
+        const { name, email, password } = this.state;
+        if (!name) {
+            this.setState({ nameError: 'Este campo é obrigatório' });
+            return;
+        }
+        if (!email) {
+            this.setState({ nameError: 'Este campo é obrigatório' });
+            return;
+        }
         const hasRequiredFieldsUnfilled = this.checkFillingRequiredFields();
-        const hasValidPassword = this.passwordField.current.validar();
+        const hasValidPassword = this.passwordField.current.validate();
         if (hasRequiredFieldsUnfilled || !hasValidPassword) {
             this.setState({
                 ...hasRequiredFieldsUnfilled,
@@ -59,7 +67,6 @@ export default class CreateAccountScreen extends React.Component {
         }
         const sendRegistryRequest = async () => {
             try {
-                const { name, email, password } = this.state;
                 const resultado = await Remote.register({ name, email, password });
                 if (!resultado || resultado.error) {
                     const generalError = resultado.error;
@@ -103,75 +110,58 @@ export default class CreateAccountScreen extends React.Component {
     }
 
     render() {
-        const shouldShow = [STATUS.PROGRESS, STATUS.SUCCESS, STATUS.ERROR].includes(this.state.requeststatus);
+        const shouldShow = [STATUS.PROGRESS, STATUS.SUCCESS, STATUS.ERROR].includes(this.state.requestStatus);
         return (
-            <View flex spread paddingH-10 paddingV-10 >
-                <Text text60 marginB-10>Para liberar seu acesso, precisamos que nos informe alguns dados sobre você.</Text>
-                <KeyboardAwareScrollView
-                    showsVerticalScrollIndicator={false}
-                    keyboardDismissMode="interactive"
-                    keyboardShouldPersistTaps="always"
-                    getTextInputRefs={() => {
-                        return [
-                            this.name,
-                            this.email,
-                            this.passwordField,
-                        ];
-                    }}
+            <View style={{ display: 'flex', paddingHorizontal: 10 }} >
+                <Text style={styles.headerText}>Para liberar seu acesso, precisamos que nos informe alguns dados sobre você.</Text>
+                <View
                 >
-                    <TextField
+                    <Input
+                        ref={this.nameField}
                         returnKeyType={'next'}
-                        ref={r => {
-                            this.name = r;
-                        }}
                         enableErrors
-                        error={this.state.nameError}
-                        text50
-                        title={'Nome completo'}
+                        errorMessage={this.state.nameError}
+                        label={'Nome completo'}
                         placeholder={'Nome completo'}
-                        helperText={'Nome completo'}
-                        titleColor={COLORS.azulSus}
-                        floatingPlaceholder={true}
-                        floatingPlaceholderColor={COLORS.azulSus}
                         onSubmitEditing={() => { this.emailField.current.focus() }}
                         blurOnSubmit={false}
                         value={this.state.name}
                         onChangeText={name => this.setState({ name })}
                         maxLength={250}
+                        leftIcon={{ type: 'material-community', name: 'account', color: COLORS.defaultGray }}
                     />
-                    <TextField
+                    <Input
                         returnKeyType={'next'}
                         ref={this.emailField}
-                        error={this.state.emailError}
-                        text50
-                        title={'E-mail'}
+                        errorMessage={this.state.emailError}
+                        label={'E-mail'}
                         placeholder={'E-mail'}
-                        helperText={'E-mail'}
-                        titleColor={COLORS.azulSus}
-                        floatingPlaceholder={true}
-                        floatingPlaceholderColor={COLORS.azulSus}
                         keyboardType={'email-address'}
                         blurOnSubmit={false}
                         onSubmitEditing={() => { this.passwordField.current.focus(); }}
                         value={this.state.email}
                         onChangeText={email => this.setState({ email, emailError: '', generalError: '' })}
                         maxLength={150}
+                        leftIcon={{ type: 'material-community', name: 'email', color: COLORS.defaultGray }}
                     />
                     <UserPasswordInput ref={this.passwordField} password={this.state.password} onChangeText={password => this.setState({ password })} returnKeyType={'done'} blurOnSubmit={false} onSubmitEditing={Keyboard.dismiss} />
-                    <Button
-                        br20
-                        disabled={this.state.requeststatus === STATUS.PROGRESS}
-                        marginT-10
-                        backgroundColor={COLORS.azulSus}
-                        label={'Cadastrar'}
-                        onPress={this.startRegistry}
-                    >
-                        <View >
-                            <ActivityIndicator style={{ marginHorizontal: 0 }} size="small" color={COLORS.azulSus} />
-                        </View>
-                    </Button>
-                </KeyboardAwareScrollView>
+                    <Button buttonStyle={styles.loginBtn} title='Cadastrar' disabled={shouldShow} onPress={this.startRegistry} />
+                </View>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    loginBtn: { backgroundColor: COLORS.azulSus },
+    forgotPassword: { display: 'flex', alignSelf: 'flex-end' },
+    createAccount: { display: 'flex', flexDirection: 'row', alignSelf: 'flex-end' },
+    createAccountText: { fontSize: 18, paddingVertical: 20 },
+    headerText: { fontSize: 22, paddingBottom: 20 },
+});

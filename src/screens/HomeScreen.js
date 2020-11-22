@@ -12,7 +12,7 @@ import { COLORS, ROUTES } from '../constants';
 
 import * as LocalRepository from '../database/Local';
 
-import AuthContext from '../AuthContext';
+import AuthContext from '../contexts/AuthContext';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 

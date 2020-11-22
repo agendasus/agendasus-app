@@ -25,7 +25,7 @@ export default class ModalResult extends React.Component {
         //TODO essas cores nao podem ficar assim, tem que ir pra constante
         const corIcone = this.props.requestStatus === STATUS.ERROR ? 'red' : 'green';
         //TODO ficou meio estranho, repensar isso aqui - talvez criar um componente com cada imagem
-        const icone = this.props.requestStatus === STATUS.ERROR ? require('../images/baseline_error_black_48.png') : require('../images/baseline_done_black_48.png');
+        const icone = this.props.requestStatus === STATUS.ERROR ? require('../../assets/baseline_error_black_48.png') : require('../../assets/baseline_done_black_48.png');
         return (
             <View flex center paddingH-30 >
                 <Image source={icone}

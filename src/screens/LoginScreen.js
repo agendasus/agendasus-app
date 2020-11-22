@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { Alert, TouchableWithoutFeedback, StyleSheet } from "react-native";
+import { Alert, Image, View, TouchableWithoutFeedback, StyleSheet } from "react-native";
 import {
-    View,
     Button,
-    TextField,
-    Image,
+    Input,
     Text,
-    KeyboardAwareScrollView,
-} from 'react-native-ui-lib';
+} from 'react-native-elements';
+
 import Dialog from "react-native-dialog";
 
-import Remote from '../database/Remote';
+import * as  Remote from '../database/Remote';
 import { ROUTES, COLORS } from '../constants';
 import UserPasswordInput from '../components/UserPasswordInput';
 
-import AuthContext from '../AuthContext';
+import AuthContext from '../contexts/AuthContext';
 
 export default class LoginScreen extends React.Component {
     static contextType = AuthContext;
@@ -22,6 +20,7 @@ export default class LoginScreen extends React.Component {
         super(props);
         this.state = {
             user: '',
+            userError: '',
             password: '',
             sendingRequest: false,
             error: false,
@@ -57,7 +56,12 @@ export default class LoginScreen extends React.Component {
                 this.showGeneralErrorAlert();
             }
         }
-        const campoPasswordValido = this.passwordField.current.validar();
+        const userError = this.state.user ? '' : 'Campo obrigatório';
+        if (userError) {
+            this.setState({ userError });
+            return;
+        }
+        const campoPasswordValido = this.passwordField.current.validate();
         if (!campoPasswordValido) {
             return;
         }
@@ -109,63 +113,51 @@ export default class LoginScreen extends React.Component {
     }
 
     render() {
+        const textLinkColor = this.state.sendingRequest ? COLORS.cinzaDesabilitado : COLORS.azulSus;
         return (
-            <View flex spread paddingH-10 paddingV-10 >
+            <View style={{ display: 'flex', paddingHorizontal: 10 }} >
                 {this.mountChangeServerPrompt()}
-                <Text center uppercase text30 style={{ fontWeight: 'bold' }} color={COLORS.azulSus}>Agenda</Text>
-                <View center >
+                <View style={{ display: 'flex', alignItems: 'center' }}  >
+                    <Text style={{ fontWeight: 'bold', fontSize: 40, color: COLORS.azulSus }} > Agenda</Text>
                     <TouchableWithoutFeedback onPress={() => this.setState({ showServerAddAlert: true })}>
-                        <Image center source={require('../images/Logo_SUS.svg.png')}
+                        <Image
+                            source={require('../../assets/Logo_SUS.png')}
                             //TODO melhor colocar essa definição de estilo em um arquivo, nao?
-                            style={{
-                                height: 100,
-                            }}
+                            style={{ width: 200, height: 100 }}
                             resizeMode={'contain'}
                         />
                     </TouchableWithoutFeedback>
                 </View>
-                <KeyboardAwareScrollView
-                    showsVerticalScrollIndicator={false}
-                    keyboardDismissMode="interactive"
-                    keyboardShouldPersistTaps="always"
-                    getTextInputRefs={() => {
-                        return [
-                            this.userField,
-                            this.passwordField,
-                        ];
-                    }}
-                    contentContainerStyle={{ paddingTop: 20 }}
-                >
-                    <TextField
+                <View>
+                    <Input
                         text50
-                        title={'Usuário'}
-                        placeholder={'Usuário'}
-                        helperText={'Usuário'}
-                        titleColor={COLORS.azulSus}
-                        floatingPlaceholder={true}
-                        floatingPlaceholderColor={COLORS.azulSus}
+                        label={'Usuário'}
+                        placeholder={'joao@email.com'}
+                        leftIcon={{ type: 'material-community', name: 'email', color: COLORS.defaultGray }}
                         value={this.state.user}
-                        onChangeText={user => this.setState({ user })}
+                        onChangeText={user => this.setState({ user, userError: '' })}
                         maxLength={150}
                         returnKeyType={'next'}
                         ref={this.userField}
                         onSubmitEditing={() => { this.passwordField.current.focus() }}
                         blurOnSubmit={false}
+                        errorMessage={this.state.userError}
                     />
                     <UserPasswordInput ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
-                    <View flex right marginB-20>
-                        <Button disabled={this.state.sendingRequest} link linkColor={COLORS.azulSus} backgroundColor={COLORS.azulSus} label={'Esqueci minha senha'} onPress={this.goToForgotPasswordScreen} />
+                    <TouchableWithoutFeedback onPress={this.goToForgotPasswordScreen}>
+                        <Text style={[styles.forgotPassword, styles.linkText, { color: textLinkColor }]} >Esqueci minha senha</Text>
+                    </TouchableWithoutFeedback>
+                    <Button buttonStyle={styles.loginBtn} title='Entrar' disabled={this.state.sendingRequest} onPress={this.login} />
+                    <View style={styles.createAccount}>
+                        <Text style={styles.createAccountText}>
+                            <Text> Ainda não tem acesso? </Text>
+                            <TouchableWithoutFeedback onPress={this.gotToCreateAccountScreen}>
+                                <Text style={[styles.linkText, { color: textLinkColor }]} >Crie uma conta</Text>
+                            </TouchableWithoutFeedback>
+                        </Text>
                     </View>
-                    <View flex spread marginB-20>
-                        <Button br20 disabled={this.state.sendingRequest} backgroundColor={COLORS.azulSus} label={'Entrar'} onPress={this.login} />
-                    </View>
-
-                    <View flex row center>
-                        <Text center text70 color={this.state.sendingRequest ? COLORS.cinzaDesabilitado : 'black'}> Ainda não tem acesso? </Text>
-                        <Button disabled={this.state.sendingRequest} link linkColor={COLORS.azulSus} label={'Criar conta.'} onPress={this.gotToCreateAccountScreen} />
-                    </View>
-                </KeyboardAwareScrollView>
-            </View>
+                </View>
+            </View >
         );
     }
 }
@@ -177,4 +169,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    loginBtn: { backgroundColor: COLORS.azulSus },
+    forgotPassword: { display: 'flex', alignSelf: 'flex-end' },
+    createAccount: { display: 'flex', flexDirection: 'row', alignSelf: 'flex-end' },
+    createAccountText: { fontSize: 18, paddingVertical: 20 },
+    linkText: { fontSize: 18, paddingBottom: 20 },
 });

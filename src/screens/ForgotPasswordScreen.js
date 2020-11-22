@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Alert, } from "react-native";
-import { Text, View, Button, TextField, KeyboardAwareScrollView } from 'react-native-ui-lib';
+import { Alert, View, StyleSheet } from "react-native";
+import { Text, Button, Input } from 'react-native-elements';
 import ModalResult from '../components/ModalResult';
 
 import { COLORS, STATUS } from '../constants';
-import Remote from '../database/Remote';
+import * as  Remote from '../database/Remote';
 
 export default class ResetPasswordScreen extends React.Component {
 
@@ -13,7 +13,7 @@ export default class ResetPasswordScreen extends React.Component {
         this.state = {
             requestStatus: STATUS.INICIAL,
             userError: '',
-            user: this.props.route.params.user,
+            user: this.props.route.params?.user,
         };
         this.userField = React.createRef();
     }
@@ -43,8 +43,8 @@ export default class ResetPasswordScreen extends React.Component {
 
     showGeneralErrorAlert = () => {
         Alert.alert(
-            'Falha ao redefinir a password',
-            'Não foi possível redefinir a password. Tente novamente em alguns instantes.',
+            'Falha ao redefinir a senha',
+            'Não foi possível redefinir a senha. Tente novamente em alguns instantes.',
             [
                 { text: 'OK', onPress: () => this.setState({ requestStatus: STATUS.ERROR }) }
             ],
@@ -66,7 +66,7 @@ export default class ResetPasswordScreen extends React.Component {
             return 'Um email será enviado com o guia para redefinição da senha.';
         }
         if (requestStatus === STATUS.ERROR) {
-            return 'Não foi possível redefinir a password. Tente novamente em alguns instantes.';
+            return 'Não foi possível redefinir a senha. Tente novamente em alguns instantes.';
         }
         if (requestStatus === STATUS.SUCCESS) {
             return 'Enviamos um email com o guia para a redefinição da senha.';
@@ -81,42 +81,23 @@ export default class ResetPasswordScreen extends React.Component {
             STATUS.ERROR,
         ].includes(requestStatus);
         return (
-            <View flex spread paddingH-10 paddingV-10 >
-                <Text text60 marginB-10>
-                    Você esqueceu sua password? Não tem problema. Nos diga qual o usuário
+            <View style={{ display: 'flex', paddingHorizontal: 10 }} >
+                <Text style={styles.headerText}>
+                    Você esqueceu sua senha? Não tem problema. Nos diga qual o usuário
                     você deseja redefinir a senha.
                 </Text>
-                <KeyboardAwareScrollView
-                    showsVerticalScrollIndicator={false}
-                    keyboardDismissMode="interactive"
-                    keyboardShouldPersistTaps="always"
-                    getTextInputRefs={() => {
-                        return [
-                            this.userField,
-                        ];
-                    }}
-                >
-                    <TextField
-                        ref={this.userField}
-                        error={userError}
-                        value={user}
-                        text50
-                        title={'Usuário'}
-                        placeholder={'Usuário'}
-                        helperText={'Usuário'}
-                        titleColor={COLORS.azulSus}
-                        floatingPlaceholder={true}
-                        floatingPlaceholderColor={COLORS.azulSus}
-                        onChangeText={this.changeUser}
-                        maxLength={150}
-                    />
-                    <Button
-                        br20
-                        backgroundColor={COLORS.azulSus}
-                        label={'Redefinir senha'}
-                        onPress={this.startResetPasswordProccess}
-                    />
-                </KeyboardAwareScrollView>
+                <Input
+                    ref={this.userField}
+                    errorMessage={userError}
+                    value={user}
+                    label={'E-mail'}
+                    placeholder={'E-mail'}
+                    titleColor={COLORS.azulSus}
+                    onChangeText={this.changeUser}
+                    maxLength={150}
+                    leftIcon={{ type: 'material-community', name: 'email', color: COLORS.defaultGray }}
+                />
+                <Button buttonStyle={styles.loginBtn} title='Redefinir senha' disabled={shouldShow} onPress={this.startResetPasswordProccess} />
                 <ModalResult
                     title={'Redefinindo senha'}
                     description={this.mountModalResultDescription}
@@ -128,3 +109,17 @@ export default class ResetPasswordScreen extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    loginBtn: { backgroundColor: COLORS.azulSus },
+    forgotPassword: { display: 'flex', alignSelf: 'flex-end' },
+    createAccount: { display: 'flex', flexDirection: 'row', alignSelf: 'flex-end' },
+    createAccountText: { fontSize: 18, paddingVertical: 20 },
+    headerText: { fontSize: 22, paddingBottom: 20 },
+});

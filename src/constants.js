@@ -15,6 +15,7 @@ export const ROUTES = {
 export const COLORS = {
     azulSus: '#005496',
     cinzaDesabilitado: '#C2C7CB',
+    defaultGray: '#86939e',
 };
 
 export const STATUS = {

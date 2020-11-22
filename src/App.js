@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { LogBox } from 'react-native';
 
+import { ThemeProvider } from 'react-native-elements';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -19,8 +21,8 @@ import { ROUTES } from './constants';
 
 import * as LocalRepository from './database/Local';
 
-import { AuthProvider } from './AuthContext';
-''
+import { AuthProvider } from './contexts/AuthContext';
+
 import Moment from 'moment';
 import momentPT from 'moment/locale/pt';
 Moment.updateLocale('pt', momentPT);
@@ -49,7 +51,7 @@ const config = {
 };
 
 const linking = {
-  prefixes: ['http://agendasus.*','http://agendasus-auth.*'],
+  prefixes: ['http://agendasus.*', 'http://agendasus-auth.*'],
   config,
 };
 
@@ -68,13 +70,13 @@ const mountOpenRoutes = () => {
       />
       <Stack.Screen
         options={noHeaderWithBackButton}
-        name={ROUTES.resetPassword}
-        component={ResetPasswordScreen}
+        name={ROUTES.forgotPassword}
+        component={ForgotPasswordScreen}
       />
       <Stack.Screen
         options={noHeaderWithBackButton}
-        name={ROUTES.forgotPassword}
-        component={ForgotPasswordScreen}
+        name={ROUTES.resetPassword}
+        component={ResetPasswordScreen}
       />
     </Stack.Navigator>
   );
@@ -94,7 +96,15 @@ const mountRestrictedRoutes = userData => {
         initialParams={userData}
       />
       <Stack.Screen
-        options={noHeaderWithBackButton}
+        options={{
+          headerStyle: {
+            elevation: 0,
+            shadowOpacity: 0,
+            backgroundColor: 'white',
+          },
+          headerTitle: 'Agendamentos',
+          headerShown: true,
+        }}
         name={ROUTES.restricted.appointment}
         component={AppointmentScreen}
         initialParams={userData}
@@ -111,7 +121,6 @@ const mountRestrictedRoutes = userData => {
         component={MedicationScreen}
         initialParams={userData}
       />
-
     </Stack.Navigator>
   );
 }
@@ -123,7 +132,7 @@ const mountOpeningRoutes = () => {
       <Stack.Screen
         options={noHeaderWithBackButton}
         name={ROUTES.resetPassword}
-        component={ForgotPasswordScreen}
+        component={ResetPasswordScreen}
       />
     </Stack.Navigator>
   );
@@ -164,14 +173,16 @@ function App() {
 
 
   return (
-    <AuthProvider value={authContext}>
-      <NavigationContainer linking={linking}>
-        {isLoading ? (
-          mountOpeningRoutes()
-        ) : hasToken ? mountRestrictedRoutes(userData) : mountOpenRoutes()
-        }
-      </NavigationContainer>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider value={authContext}>
+        <NavigationContainer linking={linking}>
+          {isLoading ? (
+            mountOpeningRoutes()
+          ) : hasToken ? mountRestrictedRoutes(userData) : mountOpenRoutes()
+          }
+        </NavigationContainer>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
