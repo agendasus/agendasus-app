@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { PureComponent } from 'react'
 import {
     Text,
     View,
@@ -12,7 +12,7 @@ import {
 
 import { COLORS, STATUS } from '../constants';
 
-export default class ModalResult extends React.Component {
+export default class ModalResult extends PureComponent {
     mountModalContent = () => {
         if (this.props.requestStatus === STATUS.PROGRESS) {
             return (

@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import { StyleSheet, View } from 'react-native'
+import React, { PureComponent } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { COLORS } from '../constants';
 

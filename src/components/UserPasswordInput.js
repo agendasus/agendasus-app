@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { View } from "react-native";
+import React, { PureComponent } from 'react'
 import {
     Input,
 } from 'react-native-elements';
 
 import { COLORS } from '../constants';
 
-export default class UserPasswordInput extends React.Component {
+export default class UserPasswordInput extends PureComponent {
 
 
     constructor(props) {
