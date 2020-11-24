@@ -15,7 +15,7 @@ import ActionSheet from "react-native-actions-sheet";
 import { Icon } from 'react-native-elements';
 
 import FAB from '../components/FAB';
-import { COLORS } from '../constants';
+import { COLORS, ROUTES } from '../constants';
 
 import { formatDateAndTime } from '../utility/util';
 
@@ -212,6 +212,9 @@ export default class AppointmentScreen extends React.Component {
             </View>
         );
     }
+    addAppointment = () => {
+        this.props.navigation.navigate(ROUTES.restricted.addAppointment);
+    }
     render() {
         return (
             <View backgroundColor={'white'} style={{ flex: 1, borderWidth: 0, paddingHorizontal: 10 }}>
@@ -232,7 +235,7 @@ export default class AppointmentScreen extends React.Component {
                 }
                 <FAB
                     name='plus'
-                    onPress={() => alert("criar novo agendamento vai aqui")}
+                    onPress={this.addAppointment}
                 />
                 <ActionSheet ref={this.actionSheetRef} gestureEnabled indicatorColor={'gray'}>
                     <View backgroundColor={'transparent'} >

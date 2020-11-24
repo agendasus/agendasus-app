@@ -186,7 +186,7 @@ const DATA = [
         name: 'Cumpadi Uóshitu',
         date: Moment(new Date()).add(1, 'month').toDate().getTime(),
     },
-]
+];
 
 
 export const getAppointments = () => {
@@ -240,3 +240,22 @@ export const filterAppointment = filters => {
         }, 200);
     });
 };
+
+
+export const getAppointmentTypes = () => {
+    return new Promise(resolve => {
+        const types = [{ id: 'appointment', icon: 'clipboard-plus-outline', name: 'Consulta' }, { id: 'exam', name: 'Exame', icon: 'test-tube' }];
+        setTimeout(() => {
+            resolve(types);
+        }, 200);
+    });
+}
+
+export const getAppointmentLocal = searchValue => {
+    return new Promise(resolve => {
+        const local = [{ id: 'local0', name: 'Hospital ABC - Rua principal da cidade' }, { id: 'local1', name: 'Hospital XYZ - Rua inventada' }, { id: 'local2', name: 'Posto de saúde da Barra - Rua da barra' }, { id: 'local3', name: 'Hospital leste oeste - Rua XV de Novembro' }, { id: 'local4', name: 'Hospital Bahia Sul - Rua desconhecida' }, { id: 'local5', name: 'Algum outro local' }, { id: 'local6', name: 'Imagina um local aqui' }, { id: 'local7', name: 'Um local bem legal aqui' }, { id: 'local8', name: 'Hospital do Batman' }];
+        setTimeout(() => {
+            resolve(local);
+        }, 200);
+    });
+}

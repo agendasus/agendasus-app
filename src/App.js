@@ -13,6 +13,7 @@ import HomeScreen from './screens/HomeScreen';
 import SplashScreen from './screens/SplashScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 
+import AddAppointmentScreen from './screens/add-appointment/AddAppointmentScreen';
 import AppointmentScreen from './screens/AppointmentScreen';
 import MedicalRecordScreen from './screens/MedicalRecordScreen';
 import MedicationScreen from './screens/MedicationScreen';
@@ -121,6 +122,13 @@ const mountRestrictedRoutes = userData => {
         component={MedicationScreen}
         initialParams={userData}
       />
+      <Stack.Screen
+        options={noHeader}
+        name={ROUTES.restricted.addAppointment}
+        component={AddAppointmentScreen}
+        initialParams={userData}
+      />
+
     </Stack.Navigator>
   );
 }

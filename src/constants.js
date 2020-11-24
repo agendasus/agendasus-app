@@ -6,6 +6,7 @@ export const ROUTES = {
     restricted: {
         home: 'home',
         appointment: 'appointment',
+        addAppointment: 'addAppointment',
         medicalRecord: 'medicalRecord',
         medication: 'medication',
     },
