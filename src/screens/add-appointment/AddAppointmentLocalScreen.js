@@ -1,38 +1,32 @@
 import React, { PureComponent } from 'react';
-import { Keyboard, ScrollView, StyleSheet, FlatList, TextInput, ActivityIndicator } from 'react-native';
+import PropTypes from 'prop-types';
+import { FlatList, ActivityIndicator } from 'react-native';
 import {
     View,
     Text,
-    KeyboardAwareFlatList,
-    KeyboardAwareScrollView,
-    TextField,
 } from 'react-native-ui-lib';
-import {
-    ListItem,
-    BottomSheet,
-    Button,
-    Input,
-    Icon,
-} from 'react-native-elements';
 
 import { COLORS } from '../../constants';
 
 import * as Remote from '../../database/Remote';
 
 import SearchBar from '../../components/SearchBar';
-
-const SEARCH_DELAY = 1000;
+import AppointmentLocalListItem from '../../components/AppointmentLocalListItem';
 
 export default class AddAppointmentLocalScreen extends PureComponent {
 
+    propTypes = {
+        goToNext: PropTypes.func.isRequired,
+    }
+
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             appointmentLocal: [],
             showappointmentLocal: false,
             selectedLocal: null,
             loading: false,
-        }
+        };
     }
 
     findLocal = async text => {
@@ -53,12 +47,8 @@ export default class AddAppointmentLocalScreen extends PureComponent {
 
     renderItem = ({ item }) => {
         return (
-            //nao é legal fazer isso no onPress
-            <ListItem key={item.id} bottomDivider onPress={() => this.selectLocal(item)}> 
-                <ListItem.Content>
-                    <ListItem.Title>{item.name}</ListItem.Title>
-                </ListItem.Content>
-            </ListItem>
+            <AppointmentLocalListItem item={item} onPress={this.selectLocal} />
+
         );
     }
 

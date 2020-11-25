@@ -1,17 +1,13 @@
 import * as React from 'react';
-import { ActivityIndicator, ScrollView, View, Alert, FlatList, StyleSheet, TextInput, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import { ActivityIndicator, ScrollView, View, Alert, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import {
     Text,
-    Card,
-    ColorName,
 } from 'react-native-ui-lib';
 import {
-    Button,
-    SearchBar,
     ButtonGroup,
 } from 'react-native-elements';
 import ActionSheet from 'react-native-actions-sheet';
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Icon } from 'react-native-elements';
 
 import FAB from '../components/FAB';
@@ -23,15 +19,11 @@ import HeaderWithSearch from '../components/HeaderWithSearch';
 
 import * as Remote from '../database/Remote';
 
-const styles = StyleSheet.create({
-    actionButtonIcon: {
-        fontSize: 20,
-        height: 22,
-        color: 'white',
-    },
-});
-
 export default class AppointmentScreen extends React.Component {
+
+    propTypes = {
+        navigation: PropTypes.object.isRequired,
+    }
 
     constructor(props) {
         super(props);
@@ -41,7 +33,7 @@ export default class AppointmentScreen extends React.Component {
             showOptions: false,
             selectedItemId: null,
             selectedFilters: [],
-        }
+        };
         this.actionSheetRef = React.createRef();
     }
 
@@ -57,10 +49,6 @@ export default class AppointmentScreen extends React.Component {
             const data = await Remote.getAppointments();
             this.setState({ loading: false, data });
         });
-    }
-
-    updateAppointment = async (data) => {
-
     }
 
     showOptions = (itemId) => {

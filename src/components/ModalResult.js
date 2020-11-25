@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
     Text,
     View,
@@ -13,6 +14,14 @@ import {
 import { COLORS, STATUS } from '../constants';
 
 export default class ModalResult extends PureComponent {
+    propTypes = {
+        requestStatus: PropTypes.oneOf([STATUS.PROGRESS, STATUS.ERROR, STATUS.SUCCESS]).isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.func.isRequired,
+        close: PropTypes.func.isRequired,
+        visible: PropTypes.bool.isRequired,
+    }
+
     mountModalContent = () => {
         if (this.props.requestStatus === STATUS.PROGRESS) {
             return (
@@ -59,6 +68,6 @@ export default class ModalResult extends PureComponent {
                     {this.mountModalContent()}
                 </View>
             </Modal>
-        )
+        );
     }
 }

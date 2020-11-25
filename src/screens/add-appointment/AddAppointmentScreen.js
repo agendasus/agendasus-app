@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
 import {
     View,
-    Text,
 } from 'react-native-ui-lib';
 import {
-    ListItem,
-    BottomSheet,
     Button,
     Icon,
 } from 'react-native-elements';
@@ -21,8 +18,12 @@ import { COLORS } from '../../constants';
 
 export default class AddAppointmentScreen extends React.Component {
 
+    propTypes = {
+        navigation: PropTypes.object.isRequired,
+    }
+
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             pageIndex: 0,
             localData: null,
@@ -33,7 +34,7 @@ export default class AddAppointmentScreen extends React.Component {
         this.swiperField = React.createRef();
     }
 
-    goToNext = (data) => {
+    goToNext = () => {
         let nextIndex = 0;
         const currentPageIndex = this.state.pageIndex;
         if (currentPageIndex === 0) {
@@ -66,7 +67,7 @@ export default class AddAppointmentScreen extends React.Component {
     }
 
     setCurrentIndex = currentIndex => {
-        this.setState({ currentIndex })
+        this.setState({ currentIndex });
     }
 
     sendAppointmentRequest = () => {

@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
     Input,
 } from 'react-native-elements';
@@ -7,9 +8,13 @@ import { COLORS } from '../constants';
 
 export default class UserPasswordInput extends PureComponent {
 
+    propTypes = {
+        password: PropTypes.string.isRequired,
+        onChangeText: PropTypes.func.isRequired,
+    }
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             passwordError: '',
         };
@@ -56,6 +61,6 @@ export default class UserPasswordInput extends PureComponent {
                 value={this.props.password}
                 onChangeText={this.onChangeValue}
             />
-        )
+        );
     }
 }

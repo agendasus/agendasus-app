@@ -6,6 +6,8 @@ import { ThemeProvider } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Moment from 'moment';
+import momentPT from 'moment/locale/pt';
 import LoginScreen from './screens/LoginScreen';
 import CreateAccountScreen from './screens/CreateAccountScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
@@ -24,8 +26,6 @@ import * as LocalRepository from './database/Local';
 
 import { AuthProvider } from './contexts/AuthContext';
 
-import Moment from 'moment';
-import momentPT from 'moment/locale/pt';
 Moment.updateLocale('pt', momentPT);
 
 LogBox.ignoreLogs(['Deprecation warning: use moment.updateLocale']);
@@ -56,95 +56,89 @@ const linking = {
   config,
 };
 
-const mountOpenRoutes = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        options={noHeader}
-        name={ROUTES.login}
-        component={LoginScreen}
-      />
-      <Stack.Screen
-        options={noHeaderWithBackButton}
-        name={ROUTES.createAccount}
-        component={CreateAccountScreen}
-      />
-      <Stack.Screen
-        options={noHeaderWithBackButton}
-        name={ROUTES.forgotPassword}
-        component={ForgotPasswordScreen}
-      />
-      <Stack.Screen
-        options={noHeaderWithBackButton}
-        name={ROUTES.resetPassword}
-        component={ResetPasswordScreen}
-      />
-    </Stack.Navigator>
-  );
-}
+const mountOpenRoutes = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      options={noHeader}
+      name={ROUTES.login}
+      component={LoginScreen}
+    />
+    <Stack.Screen
+      options={noHeaderWithBackButton}
+      name={ROUTES.createAccount}
+      component={CreateAccountScreen}
+    />
+    <Stack.Screen
+      options={noHeaderWithBackButton}
+      name={ROUTES.forgotPassword}
+      component={ForgotPasswordScreen}
+    />
+    <Stack.Screen
+      options={noHeaderWithBackButton}
+      name={ROUTES.resetPassword}
+      component={ResetPasswordScreen}
+    />
+  </Stack.Navigator>
+);
 
-const mountRestrictedRoutes = userData => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        cardStyle: { backgroundColor: 'white' },
+const mountRestrictedRoutes = (userData) => (
+  <Stack.Navigator
+    screenOptions={{
+      cardStyle: { backgroundColor: 'white' },
+    }}
+  >
+    <Stack.Screen
+      options={noHeader}
+      name={ROUTES.restricted.home}
+      component={HomeScreen}
+      initialParams={userData}
+    />
+    <Stack.Screen
+      options={{
+        headerStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
+          backgroundColor: 'white',
+        },
+        headerTitle: 'Agendamentos',
+        headerShown: true,
       }}
-    >
-      <Stack.Screen
-        options={noHeader}
-        name={ROUTES.restricted.home}
-        component={HomeScreen}
-        initialParams={userData}
-      />
-      <Stack.Screen
-        options={{
-          headerStyle: {
-            elevation: 0,
-            shadowOpacity: 0,
-            backgroundColor: 'white',
-          },
-          headerTitle: 'Agendamentos',
-          headerShown: true,
-        }}
-        name={ROUTES.restricted.appointment}
-        component={AppointmentScreen}
-        initialParams={userData}
-      />
-      <Stack.Screen
-        options={noHeaderWithBackButton}
-        name={ROUTES.restricted.medicalRecord}
-        component={MedicalRecordScreen}
-        initialParams={userData}
-      />
-      <Stack.Screen
-        options={noHeaderWithBackButton}
-        name={ROUTES.restricted.medication}
-        component={MedicationScreen}
-        initialParams={userData}
-      />
-      <Stack.Screen
-        options={noHeader}
-        name={ROUTES.restricted.addAppointment}
-        component={AddAppointmentScreen}
-        initialParams={userData}
-      />
+      name={ROUTES.restricted.appointment}
+      component={AppointmentScreen}
+      initialParams={userData}
+    />
+    <Stack.Screen
+      options={noHeaderWithBackButton}
+      name={ROUTES.restricted.medicalRecord}
+      component={MedicalRecordScreen}
+      initialParams={userData}
+    />
+    <Stack.Screen
+      options={noHeaderWithBackButton}
+      name={ROUTES.restricted.medication}
+      component={MedicationScreen}
+      initialParams={userData}
+    />
+    <Stack.Screen
+      options={noHeader}
+      name={ROUTES.restricted.addAppointment}
+      component={AddAppointmentScreen}
+      initialParams={userData}
+    />
 
-    </Stack.Navigator>
-  );
-}
+  </Stack.Navigator>
+);
 
-const mountOpeningRoutes = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen options={noHeader} name='Splash' component={SplashScreen} />
-      <Stack.Screen
-        options={noHeaderWithBackButton}
-        name={ROUTES.resetPassword}
-        component={ResetPasswordScreen}
-      />
-    </Stack.Navigator>
-  );
-}
+const mountOpeningRoutes = () => (
+  <Stack.Navigator>
+    <Stack.Screen options={noHeader} name="Splash" component={SplashScreen} />
+    <Stack.Screen
+      options={noHeaderWithBackButton}
+      name={ROUTES.resetPassword}
+      component={ResetPasswordScreen}
+    />
+  </Stack.Navigator>
+);
 
 function App() {
   const [hasToken, setHasToken] = React.useState(false);
@@ -153,7 +147,7 @@ function App() {
 
   const authContext = React.useMemo(
     () => ({
-      signIn: async data => {
+      signIn: async (data) => {
         setUserData(data);
         setHasToken(true);
       },
@@ -161,12 +155,12 @@ function App() {
         setUserData();
         setHasToken(false);
       },
-      signUp: async data => {
+      signUp: async (data) => {
         setUserData(data);
         setHasToken(true);
       },
     }),
-    []
+    [],
   );
 
   React.useEffect(() => {
@@ -175,10 +169,9 @@ function App() {
       setHasToken(!!userData);
       setUserData(userData);
       setIsLoading(false);
-    }
+    };
     getUserToken();
   }, []);
-
 
   return (
     <ThemeProvider>
@@ -186,8 +179,7 @@ function App() {
         <NavigationContainer linking={linking}>
           {isLoading ? (
             mountOpeningRoutes()
-          ) : hasToken ? mountRestrictedRoutes(userData) : mountOpenRoutes()
-          }
+          ) : hasToken ? mountRestrictedRoutes(userData) : mountOpenRoutes()}
         </NavigationContainer>
       </AuthProvider>
     </ThemeProvider>

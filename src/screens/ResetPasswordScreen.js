@@ -1,7 +1,7 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
     Alert,
-    ActivityIndicator,
     View,
     StyleSheet,
 } from 'react-native';
@@ -11,6 +11,10 @@ import { ROUTES, COLORS, STATUS } from '../constants';
 import * as  Remote from '../database/Remote';
 
 export default class ForgotPasswordScreen extends React.Component {
+    propTypes = {
+        route: PropTypes.object.isRequired,
+        navigation: PropTypes.object.isRequired,
+    }
 
     constructor(props) {
         super(props);
@@ -53,7 +57,7 @@ export default class ForgotPasswordScreen extends React.Component {
     }
 
     gotToLogin = () => {
-        this.props.navigation.navigate(ROUTES.login)
+        this.props.navigation.navigate(ROUTES.login);
     }
 
     //TODO de novo? acho bom centralizar e reaproveitar

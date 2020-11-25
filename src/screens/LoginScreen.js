@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Alert, Image, View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import {
     Button,
@@ -15,6 +16,9 @@ import UserPasswordInput from '../components/UserPasswordInput';
 import AuthContext from '../contexts/AuthContext';
 
 export default class LoginScreen extends React.Component {
+    propTypes = {
+        navigation: PropTypes.object.isRequired,
+    }
     static contextType = AuthContext;
     constructor(props) {
         super(props);
@@ -55,7 +59,7 @@ export default class LoginScreen extends React.Component {
                 this.setState({ sendingRequest: false, erro: true });
                 this.showGeneralErrorAlert();
             }
-        }
+        };
         const userError = this.state.user ? '' : 'Campo obrigatório';
         if (userError) {
             this.setState({ userError });
@@ -139,7 +143,7 @@ export default class LoginScreen extends React.Component {
                         maxLength={150}
                         returnKeyType={'next'}
                         ref={this.userField}
-                        onSubmitEditing={() => { this.passwordField.current.focus() }}
+                        onSubmitEditing={() => { this.passwordField.current.focus(); }}
                         blurOnSubmit={false}
                         errorMessage={this.state.userError}
                     />

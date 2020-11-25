@@ -1,34 +1,29 @@
 import React, { PureComponent } from 'react';
-import { Keyboard, ScrollView, StyleSheet, FlatList, TextInput, ActivityIndicator } from 'react-native';
+import PropTypes from 'prop-types';
+import { FlatList, ActivityIndicator } from 'react-native';
 import {
     View,
     Text,
-    KeyboardAwareFlatList,
-    KeyboardAwareScrollView,
-    TextField,
 } from 'react-native-ui-lib';
-import {
-    ListItem,
-    BottomSheet,
-    Button,
-    Input,
-    Icon,
-} from 'react-native-elements';
 
 import { COLORS } from '../../constants';
 
-import { formatDateAndTime } from '../../utility/util';
+import AppointmentDateListItem from '../../components/AppointmentDateListItem';
 
 import * as Remote from '../../database/Remote';
 
 export default class AddAppointmentDateScreen extends PureComponent {
+    propTypes = {
+        goToNext: PropTypes.func.isRequired,
+    }
+
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             availableDates: [],
             selectedDate: null,
             loading: false,
-        }
+        };
     }
 
     componentDidMount() {
@@ -45,12 +40,7 @@ export default class AddAppointmentDateScreen extends PureComponent {
 
     renderItem = ({ item }) => {
         return (
-            //nao é legal fazer isso no onPress
-            <ListItem key={item.id} bottomDivider onPress={() => this.selectDate(item)}>
-                <ListItem.Content>
-                    <ListItem.Title>{formatDateAndTime(item.date)}</ListItem.Title>
-                </ListItem.Content>
-            </ListItem>
+            <AppointmentDateListItem item={item} onPress={this.selectDate} />
         );
     }
 

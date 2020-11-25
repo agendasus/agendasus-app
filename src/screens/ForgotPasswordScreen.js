@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Alert, View, StyleSheet } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import ModalResult from '../components/ModalResult';
@@ -7,6 +8,10 @@ import { COLORS, STATUS } from '../constants';
 import * as  Remote from '../database/Remote';
 
 export default class ResetPasswordScreen extends React.Component {
+
+    propTypes = {
+        route: PropTypes.object.isRequired,
+    }
 
     constructor(props) {
         super(props);

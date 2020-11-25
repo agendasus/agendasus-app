@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { FlatList, } from 'react-native';
 import {
     View,
@@ -38,6 +39,12 @@ const DATA = [
 ];
 
 export default class HomeScreen extends React.Component {
+
+    propTypes = {
+        navigation: PropTypes.object.isRequired,
+        route: PropTypes.object.isRequired,
+    }
+
     static contextType = AuthContext;
 
     signOut = async () => {

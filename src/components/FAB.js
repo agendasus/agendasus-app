@@ -1,9 +1,15 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { COLORS } from '../constants';
 
 export default class FAB extends PureComponent {
+
+    propTypes = {
+        onPress: PropTypes.func.isRequired,
+    }
+
     onPress = () => {
         this.props.onPress();
     }
@@ -23,7 +29,7 @@ export default class FAB extends PureComponent {
                     {...this.props}
                 />
             </View>
-        )
+        );
     }
 }
 

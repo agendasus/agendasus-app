@@ -1,37 +1,29 @@
 import React, { PureComponent } from 'react';
-import { ActivityIndicator, Keyboard, ScrollView, StyleSheet, FlatList, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
+import { Keyboard, ScrollView, TextInput } from 'react-native';
 import {
     View,
-    Text,
-    KeyboardAwareFlatList,
-    KeyboardAwareScrollView,
-    TextField,
 } from 'react-native-ui-lib';
 import {
-    ListItem,
-    BottomSheet,
-    Button,
-    Input,
     Icon,
 } from 'react-native-elements';
 
 import debounce from 'lodash/debounce';
-import { COLORS } from '../constants';
-
-// import { COLORS } from '../../constants';
-
-// import * as Remote from '../../database/Remote';
 
 const SEARCH_DELAY = 500;
 
 export default class SearchBar extends PureComponent {
 
+    propTypes = {
+        search: PropTypes.func.isRequired,
+    }
+
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             searchValue: '',
             loading: false,
-        }
+        };
         this.search = debounce(this.search.bind(this), SEARCH_DELAY);
     }
 

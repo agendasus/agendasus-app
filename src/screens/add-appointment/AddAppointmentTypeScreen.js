@@ -1,25 +1,28 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { ActivityIndicator, } from 'react-native';
 import {
     Text,
     View,
-    Card,
 } from 'react-native-ui-lib';
-import {
-    ListItem,
-    BottomSheet,
-    Button,
-} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import PropTypes from 'prop-types';
+
+import AppointmentTypeListItem from '../../components/AppointmentTypeListItem';
 
 import { COLORS } from '../../constants';
 
 import * as Remote from '../../database/Remote';
 
 export default class AddAppointmentTypeScreen extends PureComponent {
+
+    propTypes = {
+        item: PropTypes.object.isRequired,
+        goToNext: PropTypes.func.isRequired,
+    };
+
     state = {
         appointmentTypes: [],
         selectedIndex: null,
+        loading: true,
     }
 
     async componentDidMount() {
@@ -33,6 +36,11 @@ export default class AddAppointmentTypeScreen extends PureComponent {
         });
     }
 
+
+    goToNext = item => {
+        this.props.goToNext(item);
+    }
+
     render() {
         return (
             <>
@@ -41,14 +49,11 @@ export default class AddAppointmentTypeScreen extends PureComponent {
                 </Text>
                 <View marginT-10 center >
                     {
-                        this.state.appointmentTypes.map((item, index) => (
-                            <Card key={index} center marginV-10 style={{ elevation: 10, width: 150, height: 150 }}
-                                onPress={() => this.props.goToNext(item)}
-                            >
-                                <Icon name={item.icon} size={30} color={COLORS.azulSus} />
-                                <Text>{item.name}</Text>
-                            </Card>
-                        ))
+                        this.state.loading ? <ActivityIndicator color={COLORS.azulSus} size='large' />
+                            :
+                            this.state.appointmentTypes.map(item => (
+                                <AppointmentTypeListItem key={item.id} item={item} />
+                            ))
                     }
                 </View>
             </>

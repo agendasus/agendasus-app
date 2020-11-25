@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Alert, StyleSheet, View, Keyboard } from 'react-native';
 import {
     Text,
@@ -13,6 +14,11 @@ import * as  Remote from '../database/Remote';
 
 export default class CreateAccountScreen extends React.Component {
 
+    propTypes = {
+        navigation: PropTypes.object.isRequired,
+        route: PropTypes.object.isRequired,
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +30,7 @@ export default class CreateAccountScreen extends React.Component {
             passwordError: '',
             requestStatus: null,
             generalError: '',
-        }
+        };
 
         this.nameField = React.createRef();
         this.passwordField = React.createRef();
@@ -81,7 +87,7 @@ export default class CreateAccountScreen extends React.Component {
             catch (e) {
                 this.setState({ situacao: STATUS.ERROR });
             }
-        }
+        };
         this.setState({ situacao: STATUS.PROGRESS }, sendRegistryRequest);
     }
 
@@ -123,7 +129,7 @@ export default class CreateAccountScreen extends React.Component {
                         errorMessage={this.state.nameError}
                         label={'Nome completo'}
                         placeholder={'Nome completo'}
-                        onSubmitEditing={() => { this.emailField.current.focus() }}
+                        onSubmitEditing={() => { this.emailField.current.focus(); }}
                         blurOnSubmit={false}
                         value={this.state.name}
                         onChangeText={name => this.setState({ name })}
