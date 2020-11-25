@@ -15,7 +15,7 @@ import AppointmentLocalListItem from '../../components/AppointmentLocalListItem'
 
 export default class AddAppointmentLocalScreen extends PureComponent {
 
-    propTypes = {
+    static propTypes = {
         goToNext: PropTypes.func.isRequired,
     }
 

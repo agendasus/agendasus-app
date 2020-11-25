@@ -14,7 +14,7 @@ import {
 import { COLORS, STATUS } from '../constants';
 
 export default class ModalResult extends PureComponent {
-    propTypes = {
+    static propTypes = {
         requestStatus: PropTypes.oneOf([STATUS.PROGRESS, STATUS.ERROR, STATUS.SUCCESS]).isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.func.isRequired,

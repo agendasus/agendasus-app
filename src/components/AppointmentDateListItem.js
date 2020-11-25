@@ -4,10 +4,10 @@ import {
     ListItem,
 } from 'react-native-elements';
 
-import { formatDateAndTime } from '../../utility/util';
+import { formatDateAndTime } from '../utility/util';
 
 export default class AppointmentDateListItem extends PureComponent {
-    propTypes = {
+    static propTypes = {
         item: PropTypes.object.isRequired,
         onPress: PropTypes.func.isRequired,
     };

@@ -21,7 +21,7 @@ import * as Remote from '../database/Remote';
 
 export default class AppointmentScreen extends React.Component {
 
-    propTypes = {
+    static propTypes = {
         navigation: PropTypes.object.isRequired,
     }
 
@@ -203,6 +203,7 @@ export default class AppointmentScreen extends React.Component {
     addAppointment = () => {
         this.props.navigation.navigate(ROUTES.restricted.addAppointment);
     }
+    keyExtractor = item => item.id.toString();
     render() {
         return (
             <View backgroundColor={'white'} style={{ flex: 1, borderWidth: 0, paddingHorizontal: 10 }}>
@@ -214,7 +215,7 @@ export default class AppointmentScreen extends React.Component {
                             refreshing={this.state.loading}
                             data={this.state.data}
                             renderItem={this.renderItem}
-                            keyExtractor={item => item.id.toString()}
+                            keyExtractor={this.keyExtractor}
                             ListFooterComponent={this.renderFABEmptyArea}
                             ItemSeparatorComponent={this.renderItemSeparator}
                         >

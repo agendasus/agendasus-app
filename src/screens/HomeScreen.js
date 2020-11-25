@@ -40,7 +40,7 @@ const DATA = [
 
 export default class HomeScreen extends React.Component {
 
-    propTypes = {
+    static propTypes = {
         navigation: PropTypes.object.isRequired,
         route: PropTypes.object.isRequired,
     }
@@ -56,7 +56,7 @@ export default class HomeScreen extends React.Component {
         return (
             <Card flex
                 height={100}
-                onPress={() => this.props.navigation.navigate(item.route)}
+                onPress={() => this.props.navigation.navigate(item.route)} // eslint-disable-line
                 useNative
                 activeOpacity={1}
                 activeScale={0.98}
@@ -107,7 +107,7 @@ export default class HomeScreen extends React.Component {
                             numColumns={3}
                             data={DATA}
                             renderItem={this.renderItem}
-                            keyExtractor={item => item.id}
+                            keyExtractor={item => item.id} // eslint-disable-line
                         />
                     </View>
                 </View>

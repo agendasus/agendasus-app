@@ -6,7 +6,7 @@ import { COLORS } from '../constants';
 
 export default class FAB extends PureComponent {
 
-    propTypes = {
+    static propTypes = {
         onPress: PropTypes.func.isRequired,
     }
 

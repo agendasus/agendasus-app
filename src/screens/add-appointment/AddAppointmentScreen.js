@@ -18,7 +18,7 @@ import { COLORS } from '../../constants';
 
 export default class AddAppointmentScreen extends React.Component {
 
-    propTypes = {
+    static propTypes = {
         navigation: PropTypes.object.isRequired,
     }
 

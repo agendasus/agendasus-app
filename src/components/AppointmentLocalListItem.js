@@ -5,7 +5,7 @@ import {
 } from 'react-native-elements';
 
 export default class AppointmentLocalListItem extends PureComponent {
-    propTypes = {
+    static propTypes = {
         item: PropTypes.object.isRequired,
         onPress: PropTypes.func.isRequired,
     };

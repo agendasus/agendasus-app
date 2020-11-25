@@ -20,6 +20,7 @@ export const COLORS = {
 };
 
 export const STATUS = {
+  INITIAL: 'INITIAL',
   PROGRESS: 'PROGRESS',
   ERROR: 'ERROR',
   SUCCESS: 'SUCCESS',

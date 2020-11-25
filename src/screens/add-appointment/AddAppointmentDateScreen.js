@@ -13,7 +13,7 @@ import AppointmentDateListItem from '../../components/AppointmentDateListItem';
 import * as Remote from '../../database/Remote';
 
 export default class AddAppointmentDateScreen extends PureComponent {
-    propTypes = {
+    static propTypes = {
         goToNext: PropTypes.func.isRequired,
     }
 

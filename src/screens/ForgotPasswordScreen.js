@@ -9,14 +9,14 @@ import * as  Remote from '../database/Remote';
 
 export default class ResetPasswordScreen extends React.Component {
 
-    propTypes = {
+    static propTypes = {
         route: PropTypes.object.isRequired,
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            requestStatus: STATUS.INICIAL,
+            requestStatus: STATUS.INITIAL,
             userError: '',
             user: this.props.route.params?.user,
         };
@@ -58,7 +58,7 @@ export default class ResetPasswordScreen extends React.Component {
     }
 
     closeModal = () => {
-        this.setState({ requestStatus: STATUS.INICIAL });
+        this.setState({ requestStatus: STATUS.INITIAL });
     };
 
     changeUser = user => {

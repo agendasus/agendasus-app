@@ -41,7 +41,7 @@ const HeaderWithSearch = ({
 };
 
 HeaderWithSearch.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   renderItem: PropTypes.func.isRequired,
   keyExtractor: PropTypes.func.isRequired,
   refreshing: PropTypes.bool.isRequired,

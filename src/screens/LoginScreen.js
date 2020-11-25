@@ -16,7 +16,7 @@ import UserPasswordInput from '../components/UserPasswordInput';
 import AuthContext from '../contexts/AuthContext';
 
 export default class LoginScreen extends React.Component {
-    propTypes = {
+    static propTypes = {
         navigation: PropTypes.object.isRequired,
     }
     static contextType = AuthContext;
@@ -100,6 +100,10 @@ export default class LoginScreen extends React.Component {
         Remote.changeServerAddr(this.state.serverAddr);
     }
 
+    onChangeServerAddr = serverAddr => {
+        this.setState({ serverAddr });
+    }
+
     mountChangeServerPrompt = () => {
         return (
             <View>
@@ -109,11 +113,27 @@ export default class LoginScreen extends React.Component {
                         heroku: agendasus-auth.herokuapp.com
                         local: IP:PORTA
                     </Dialog.Description>
-                    <Dialog.Input wrapperStyle={{ borderWidth: 1 }} value={this.state.serverAddr} onChangeText={serverAddr => this.setState({ serverAddr })} placeholder={'Endereço do servidor'} />
+                    <Dialog.Input wrapperStyle={{ borderWidth: 1 }} value={this.state.serverAddr} onChangeText={this.onChangeServerAddr} placeholder={'Endereço do servidor'} />
                     <Dialog.Button label='OK' onPress={this.changeServer} />
                 </Dialog.Container>
             </View>
         );
+    }
+
+    setShowServerAddAlert = () => {
+        this.setState({ showServerAddAlert: true });
+    }
+
+    onChangeUser = user => {
+        this.setState({ user, userError: '' });
+    }
+
+    setFocurOnPasswordField = () => {
+        this.passwordField.current.focus();
+    }
+
+    onChangePassword = password => {
+        this.setState({ password });
     }
 
     render() {
@@ -123,7 +143,7 @@ export default class LoginScreen extends React.Component {
                 {this.mountChangeServerPrompt()}
                 <View style={{ display: 'flex', alignItems: 'center' }}  >
                     <Text style={{ fontWeight: 'bold', fontSize: 40, color: COLORS.azulSus }} > Agenda</Text>
-                    <TouchableWithoutFeedback onPress={() => this.setState({ showServerAddAlert: true })}>
+                    <TouchableWithoutFeedback onPress={this.setShowServerAddAlert}>
                         <Image
                             source={require('../../assets/Logo_SUS.png')}
                             //TODO melhor colocar essa definição de estilo em um arquivo, nao?
@@ -139,15 +159,15 @@ export default class LoginScreen extends React.Component {
                         placeholder={'joao@email.com'}
                         leftIcon={{ type: 'material-community', name: 'email', color: COLORS.defaultGray }}
                         value={this.state.user}
-                        onChangeText={user => this.setState({ user, userError: '' })}
+                        onChangeText={this.onChangeUser}
                         maxLength={150}
                         returnKeyType={'next'}
                         ref={this.userField}
-                        onSubmitEditing={() => { this.passwordField.current.focus(); }}
+                        onSubmitEditing={this.setFocurOnPasswordField}
                         blurOnSubmit={false}
                         errorMessage={this.state.userError}
                     />
-                    <UserPasswordInput ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
+                    <UserPasswordInput ref={this.passwordField} onChangeText={this.onChangePassword} password={this.state.password} />
                     <TouchableWithoutFeedback onPress={this.goToForgotPasswordScreen}>
                         <Text style={[styles.forgotPassword, styles.linkText, { color: textLinkColor }]} >{'Esqueci minha senha'}</Text>
                     </TouchableWithoutFeedback>

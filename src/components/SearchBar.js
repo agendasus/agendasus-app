@@ -14,7 +14,7 @@ const SEARCH_DELAY = 500;
 
 export default class SearchBar extends PureComponent {
 
-    propTypes = {
+    static propTypes = {
         search: PropTypes.func.isRequired,
     }
 

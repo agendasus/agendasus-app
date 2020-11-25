@@ -11,7 +11,7 @@ import { ROUTES, COLORS, STATUS } from '../constants';
 import * as  Remote from '../database/Remote';
 
 export default class ForgotPasswordScreen extends React.Component {
-    propTypes = {
+    static propTypes = {
         route: PropTypes.object.isRequired,
         navigation: PropTypes.object.isRequired,
     }
@@ -20,7 +20,7 @@ export default class ForgotPasswordScreen extends React.Component {
         super(props);
         this.state = {
             password: '',
-            requestStatus: STATUS.INICIAL,
+            requestStatus: STATUS.INITIAL,
         };
         this.passwordField = React.createRef();
     }
@@ -95,11 +95,15 @@ export default class ForgotPasswordScreen extends React.Component {
         );
     }
 
+    onChangePassword = password => {
+        this.setState({ password });
+    }
+
     render() {
         return (
             <View style={{ display: 'flex', paddingHorizontal: 10 }} >
                 <Text style={styles.headerText}>{'Para continuar, precisamos que você insira a nova senha.'}</Text>
-                <UserPasswordInput ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
+                <UserPasswordInput ref={this.passwordField} onChangeText={this.onChangePassword} password={this.state.password} />
                 <Button buttonStyle={styles.loginBtn} title={'Redefinir senha'} disabled={this.state.requestStatus === STATUS.PROGRESS} onPress={this.sendResetPasswordRequest} />
             </View>
         );

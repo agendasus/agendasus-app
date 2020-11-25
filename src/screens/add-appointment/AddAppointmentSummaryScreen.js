@@ -13,7 +13,7 @@ import { COLORS } from '../../constants';
 import { formatDateAndTime } from '../../utility/util';
 
 export default class AddAppointmentSummaryScreen extends PureComponent {
-  propTypes = {
+  static propTypes = {
     data: {
       typeData: PropTypes.object.isRequired,
       localData: PropTypes.object.isRequired,

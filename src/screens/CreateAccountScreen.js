@@ -14,7 +14,7 @@ import * as  Remote from '../database/Remote';
 
 export default class CreateAccountScreen extends React.Component {
 
-    propTypes = {
+    static propTypes = {
         navigation: PropTypes.object.isRequired,
         route: PropTypes.object.isRequired,
     }
@@ -115,6 +115,16 @@ export default class CreateAccountScreen extends React.Component {
         );
     }
 
+    emailFieldFocus = () => this.emailField.current.focus();
+
+    passwordFieldFocus = () => this.passwordField.current.focus();
+
+    onChangeName = name => this.setState({ name });
+
+    onChangeEmail = email => this.setState({ email, emailError: '', generalError: '' });
+
+    onChangePassword = password => this.setState({ password });
+
     render() {
         const shouldShow = [STATUS.PROGRESS, STATUS.SUCCESS, STATUS.ERROR].includes(this.state.requestStatus);
         return (
@@ -129,10 +139,10 @@ export default class CreateAccountScreen extends React.Component {
                         errorMessage={this.state.nameError}
                         label={'Nome completo'}
                         placeholder={'Nome completo'}
-                        onSubmitEditing={() => { this.emailField.current.focus(); }}
+                        onSubmitEditing={this.emailFieldFocus}
                         blurOnSubmit={false}
                         value={this.state.name}
-                        onChangeText={name => this.setState({ name })}
+                        onChangeText={this.onChangeName}
                         maxLength={250}
                         leftIcon={{ type: 'material-community', name: 'account', color: COLORS.defaultGray }}
                     />
@@ -144,13 +154,13 @@ export default class CreateAccountScreen extends React.Component {
                         placeholder={'E-mail'}
                         keyboardType={'email-address'}
                         blurOnSubmit={false}
-                        onSubmitEditing={() => { this.passwordField.current.focus(); }}
+                        onSubmitEditing={this.passwordFieldFocus}
                         value={this.state.email}
-                        onChangeText={email => this.setState({ email, emailError: '', generalError: '' })}
+                        onChangeText={this.onChangeEmail}
                         maxLength={150}
                         leftIcon={{ type: 'material-community', name: 'email', color: COLORS.defaultGray }}
                     />
-                    <UserPasswordInput ref={this.passwordField} password={this.state.password} onChangeText={password => this.setState({ password })} returnKeyType={'done'} blurOnSubmit={false} onSubmitEditing={Keyboard.dismiss} />
+                    <UserPasswordInput ref={this.passwordField} password={this.state.password} onChangeText={this.onChangePassword} returnKeyType={'done'} blurOnSubmit={false} onSubmitEditing={Keyboard.dismiss} />
                     <Button buttonStyle={styles.loginBtn} title={'Cadastrar'} disabled={shouldShow} onPress={this.startRegistry} />
                 </View>
             </View>

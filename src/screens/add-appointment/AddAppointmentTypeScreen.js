@@ -14,7 +14,7 @@ import * as Remote from '../../database/Remote';
 
 export default class AddAppointmentTypeScreen extends PureComponent {
 
-    propTypes = {
+    static propTypes = {
         item: PropTypes.object.isRequired,
         goToNext: PropTypes.func.isRequired,
     };

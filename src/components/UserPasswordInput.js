@@ -8,7 +8,7 @@ import { COLORS } from '../constants';
 
 export default class UserPasswordInput extends PureComponent {
 
-    propTypes = {
+    static propTypes = {
         password: PropTypes.string.isRequired,
         onChangeText: PropTypes.func.isRequired,
     }

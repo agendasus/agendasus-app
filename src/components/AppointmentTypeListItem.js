@@ -6,10 +6,10 @@ import {
 } from 'react-native-ui-lib';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { COLORS } from '../../constants';
+import { COLORS } from '../constants';
 
 export default class AppointmentTypeListItem extends PureComponent {
-    propTypes = {
+    static propTypes = {
         item: PropTypes.object.isRequired,
         onPress: PropTypes.func.isRequired,
     };

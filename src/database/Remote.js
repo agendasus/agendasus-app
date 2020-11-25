@@ -190,6 +190,7 @@ export const getAppointments = () => new Promise((resolve) => {
 });
 
 export const updateAppointment = (data) => new Promise((resolve) => {
+  console.log('data', data);
   setTimeout(() => {
     resolve(DATA);
   }, 200);
@@ -214,8 +215,6 @@ export const filterAppointment = (filters) => new Promise((resolve) => {
     }
     if (filters.includes('this-week')) {
       const data = DATA.filter((item) => {
-        console.log('new Date(item.date)', new Date(item.date));
-        console.log('?', Moment(new Date(item.date)).isSame(now, 'week'));
         return Moment(new Date(item.date)).isSame(now, 'week');
       });
       result = result.concat(data);
@@ -235,6 +234,7 @@ export const getAppointmentTypes = () => new Promise((resolve) => {
 });
 
 export const getAppointmentLocal = (searchValue) => new Promise((resolve) => {
+  console.log('searchValue', searchValue);
   const local = [{ id: 'local0', name: 'Hospital ABC - Rua principal da cidade' }, { id: 'local1', name: 'Hospital XYZ - Rua inventada' }, { id: 'local2', name: 'Posto de saúde da Barra - Rua da barra' }, { id: 'local3', name: 'Hospital leste oeste - Rua XV de Novembro' }, { id: 'local4', name: 'Hospital Bahia Sul - Rua desconhecida' }, { id: 'local5', name: 'Algum outro local' }, { id: 'local6', name: 'Imagina um local aqui' }, { id: 'local7', name: 'Um local bem legal aqui' }, { id: 'local8', name: 'Hospital do Batman' }];
   setTimeout(() => {
     resolve(local);
@@ -244,6 +244,7 @@ export const getAppointmentLocal = (searchValue) => new Promise((resolve) => {
 const DAY_MILLISEC = 86400000;
 const HOUR_MILLISEC = 60 * 60 * 1000;
 export const getAvailableDates = (localId) => new Promise((resolve) => {
+  console.log('localId', localId);
   const local = [
     { id: '1', date: Date.now() },
     { id: '2', date: Date.now() + HOUR_MILLISEC },
