@@ -259,3 +259,20 @@ export const getAppointmentLocal = searchValue => {
         }, 200);
     });
 }
+
+const DAY_MILLISEC = 86400000;
+const HOUR_MILLISEC = 60 * 60 * 1000;
+export const getAvailableDates = localId => {
+    return new Promise(resolve => {
+        const local = [
+            { id: '1', date: Date.now() },
+            { id: '2', date: Date.now() + HOUR_MILLISEC },
+            { id: '3', date: Date.now() + (HOUR_MILLISEC * 2) },
+            { id: '4', date: Date.now() + (DAY_MILLISEC * 3) },
+        ];
+        setTimeout(() => {
+            resolve(local);
+        }, 200);
+    });
+}
+
