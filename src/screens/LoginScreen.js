@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Alert, Image, View, TouchableWithoutFeedback, StyleSheet } from "react-native";
+import { Alert, Image, View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import {
     Button,
     Input,
     Text,
 } from 'react-native-elements';
 
-import Dialog from "react-native-dialog";
+import Dialog from 'react-native-dialog';
 
 import * as  Remote from '../database/Remote';
 import { ROUTES, COLORS } from '../constants';
@@ -106,7 +106,7 @@ export default class LoginScreen extends React.Component {
                         local: IP:PORTA
                     </Dialog.Description>
                     <Dialog.Input wrapperStyle={{ borderWidth: 1 }} value={this.state.serverAddr} onChangeText={serverAddr => this.setState({ serverAddr })} placeholder={'Endereço do servidor'} />
-                    <Dialog.Button label="OK" onPress={this.changeServer} />
+                    <Dialog.Button label='OK' onPress={this.changeServer} />
                 </Dialog.Container>
             </View>
         );
@@ -145,12 +145,12 @@ export default class LoginScreen extends React.Component {
                     />
                     <UserPasswordInput ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
                     <TouchableWithoutFeedback onPress={this.goToForgotPasswordScreen}>
-                        <Text style={[styles.forgotPassword, styles.linkText, { color: textLinkColor }]} >Esqueci minha senha</Text>
+                        <Text style={[styles.forgotPassword, styles.linkText, { color: textLinkColor }]} >{'Esqueci minha senha'}</Text>
                     </TouchableWithoutFeedback>
-                    <Button buttonStyle={styles.loginBtn} title='Entrar' disabled={this.state.sendingRequest} onPress={this.login} />
+                    <Button buttonStyle={styles.loginBtn} title={'Entrar'} disabled={this.state.sendingRequest} onPress={this.login} />
                     <View style={styles.createAccount}>
                         <Text style={styles.createAccountText}>
-                            <Text> Ainda não tem acesso? </Text>
+                            <Text> {'Ainda não tem acesso?'} </Text>
                             <TouchableWithoutFeedback onPress={this.gotToCreateAccountScreen}>
                                 <Text style={[styles.linkText, { color: textLinkColor }]} >Crie uma conta</Text>
                             </TouchableWithoutFeedback>
@@ -165,9 +165,9 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     loginBtn: { backgroundColor: COLORS.azulSus },
     forgotPassword: { display: 'flex', alignSelf: 'flex-end' },

@@ -10,7 +10,7 @@ export default class MedicalRecordScreen extends React.Component {
     render() {
         return (
             <Text text30>
-                  Prontuário  
+                {'Prontuário'}
             </Text>
         );
     }

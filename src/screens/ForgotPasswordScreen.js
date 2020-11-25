@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, View, StyleSheet } from "react-native";
+import { Alert, View, StyleSheet } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import ModalResult from '../components/ModalResult';
 
@@ -83,8 +83,7 @@ export default class ResetPasswordScreen extends React.Component {
         return (
             <View style={{ display: 'flex', paddingHorizontal: 10 }} >
                 <Text style={styles.headerText}>
-                    Você esqueceu sua senha? Não tem problema. Nos diga qual o usuário
-                    você deseja redefinir a senha.
+                    {'Você esqueceu sua senha? Não tem problema. Nos diga qual o usuário você deseja redefinir a senha.'}
                 </Text>
                 <Input
                     ref={this.userField}
@@ -97,7 +96,7 @@ export default class ResetPasswordScreen extends React.Component {
                     maxLength={150}
                     leftIcon={{ type: 'material-community', name: 'email', color: COLORS.defaultGray }}
                 />
-                <Button buttonStyle={styles.loginBtn} title='Redefinir senha' disabled={shouldShow} onPress={this.startResetPasswordProccess} />
+                <Button buttonStyle={styles.loginBtn} title={'Redefinir senha'} disabled={shouldShow} onPress={this.startResetPasswordProccess} />
                 <ModalResult
                     title={'Redefinindo senha'}
                     description={this.mountModalResultDescription}
@@ -113,9 +112,9 @@ export default class ResetPasswordScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     loginBtn: { backgroundColor: COLORS.azulSus },
     forgotPassword: { display: 'flex', alignSelf: 'flex-end' },

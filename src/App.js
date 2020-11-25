@@ -136,7 +136,7 @@ const mountRestrictedRoutes = userData => {
 const mountOpeningRoutes = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen options={noHeader} name="Splash" component={SplashScreen} />
+      <Stack.Screen options={noHeader} name='Splash' component={SplashScreen} />
       <Stack.Screen
         options={noHeaderWithBackButton}
         name={ROUTES.resetPassword}

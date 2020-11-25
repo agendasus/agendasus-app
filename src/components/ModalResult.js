@@ -8,7 +8,7 @@ import {
     Modal,
     ActivityIndicator,
     Image,
-} from "react-native";
+} from 'react-native';
 
 import { COLORS, STATUS } from '../constants';
 
@@ -18,7 +18,7 @@ export default class ModalResult extends PureComponent {
             return (
                 <>
                     <Text text60> {this.props.title}</Text>
-                    <ActivityIndicator color={COLORS.azulSus} size="large" />
+                    <ActivityIndicator color={COLORS.azulSus} size='large' />
                 </>
             );
         }
@@ -41,7 +41,7 @@ export default class ModalResult extends PureComponent {
                 <Text text60 marginV-20>{this.props.description()}</Text>
                 <Button
                     backgroundColor={COLORS.azulSus}
-                    label='Fechar'
+                    label={'Fechar'}
                     onPress={this.props.close}
                 />
             </View>
@@ -51,7 +51,7 @@ export default class ModalResult extends PureComponent {
     render() {
         return (
             <Modal
-                animationType="fade"
+                animationType='fade'
                 presentationStyle={'formSheet'}
                 visible={this.props.visible}
             >

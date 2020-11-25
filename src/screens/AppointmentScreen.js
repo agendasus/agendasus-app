@@ -10,7 +10,7 @@ import {
     SearchBar,
     ButtonGroup,
 } from 'react-native-elements';
-import ActionSheet from "react-native-actions-sheet";
+import ActionSheet from 'react-native-actions-sheet';
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Icon } from 'react-native-elements';
 
@@ -220,7 +220,7 @@ export default class AppointmentScreen extends React.Component {
             <View backgroundColor={'white'} style={{ flex: 1, borderWidth: 0, paddingHorizontal: 10 }}>
                 {
                     this.state.loading ?
-                        <ActivityIndicator color={COLORS.azulSus} size="large" />
+                        <ActivityIndicator color={COLORS.azulSus} size='large' />
                         :
                         <HeaderWithSearch
                             refreshing={this.state.loading}
@@ -234,17 +234,17 @@ export default class AppointmentScreen extends React.Component {
                         </HeaderWithSearch>
                 }
                 <FAB
-                    name='plus'
+                    name={'plus'}
                     onPress={this.addAppointment}
                 />
                 <ActionSheet ref={this.actionSheetRef} gestureEnabled indicatorColor={'gray'}>
                     <View backgroundColor={'transparent'} >
-                        <Text text60>Você deseja:</Text>
+                        <Text text60>{'Você deseja:'}</Text>
                         <TouchableOpacity onPress={this.confirmEvent}>
                             <View style={{ width: '100%', padding: 10, marginVertical: 5 }}>
                                 <Icon name={'check'} size={30} />
                                 <Text centerV centerH center text70 style={{ paddingLeft: 10, textAlign: 'center', textAlignVertical: 'center', paddingBottom: 1 }}>
-                                    Confirmar
+                                    {'Confirmar'}
                                 </Text>
                             </View>
                         </TouchableOpacity>
@@ -252,7 +252,7 @@ export default class AppointmentScreen extends React.Component {
                             <View style={{ width: '100%', padding: 10, marginVertical: 5 }}>
                                 <Icon name={'close'} size={30} color={'#FF563D'} />
                                 <Text centerV centerH center red30 text70 style={{ paddingLeft: 10, textAlign: 'center', textAlignVertical: 'center', paddingBottom: 1 }}>
-                                    Desmarcar
+                                    {'Desmarcar'}
                                 </Text>
                             </View>
                         </TouchableOpacity>

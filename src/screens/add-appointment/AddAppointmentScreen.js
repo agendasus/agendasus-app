@@ -86,10 +86,10 @@ export default class AddAppointmentScreen extends React.Component {
                             reverseColor={'white'}
                             color={COLORS.azulSus}
                             type={'material-community'}
-                            name='arrow-left-thick' />
+                            name={'arrow-left-thick'} />
                     </View>
                     <View flex-2 center>
-                        <Button buttonStyle={{ backgroundColor: COLORS.azulSus, width: 200 }} title='Confirmar' onPress={this.sendAppointmentRequest} />
+                        <Button buttonStyle={{ backgroundColor: COLORS.azulSus, width: 200 }} title={'Confirmar'} onPress={this.sendAppointmentRequest} />
                     </View>
                 </View>
             );
@@ -103,7 +103,7 @@ export default class AddAppointmentScreen extends React.Component {
                     reverseColor={'white'}
                     color={COLORS.azulSus}
                     type={'material-community'}
-                    name='arrow-left-thick' />
+                    name={'arrow-left-thick'} />
             </View>
         );
     }

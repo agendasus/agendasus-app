@@ -37,7 +37,7 @@ export default class AddAppointmentTypeScreen extends PureComponent {
         return (
             <>
                 <Text text50 color={COLORS.azulSus}>
-                    Qual tipo de agendamento você precisa?
+                    {'Qual tipo de agendamento você precisa?'}
                 </Text>
                 <View marginT-10 center >
                     {

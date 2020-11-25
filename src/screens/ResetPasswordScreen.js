@@ -4,7 +4,7 @@ import {
     ActivityIndicator,
     View,
     StyleSheet,
-} from "react-native";
+} from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import UserPasswordInput from '../components/UserPasswordInput';
 import { ROUTES, COLORS, STATUS } from '../constants';
@@ -94,9 +94,9 @@ export default class ForgotPasswordScreen extends React.Component {
     render() {
         return (
             <View style={{ display: 'flex', paddingHorizontal: 10 }} >
-                <Text style={styles.headerText}>Para continuar, precisamos que você insira a nova senha.</Text>
+                <Text style={styles.headerText}>{'Para continuar, precisamos que você insira a nova senha.'}</Text>
                 <UserPasswordInput ref={this.passwordField} onChangeText={password => this.setState({ password })} password={this.state.password} />
-                <Button buttonStyle={styles.loginBtn} title='Redefinir senha' disabled={this.state.requestStatus === STATUS.PROGRESS} onPress={this.sendResetPasswordRequest} />
+                <Button buttonStyle={styles.loginBtn} title={'Redefinir senha'} disabled={this.state.requestStatus === STATUS.PROGRESS} onPress={this.sendResetPasswordRequest} />
             </View>
         );
     }
@@ -105,9 +105,9 @@ export default class ForgotPasswordScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     loginBtn: { backgroundColor: COLORS.azulSus },
     forgotPassword: { display: 'flex', alignSelf: 'flex-end' },

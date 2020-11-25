@@ -19,8 +19,8 @@ export default class AddAppointmentSummaryScreen extends PureComponent {
     render() {
         this.props = {
             data: {
-                typeData: { name: "Consulta" },
-                localData: { name: "Clínica São Lucas" },
+                typeData: { name: 'Consulta' },
+                localData: { name: 'Clínica São Lucas' },
                 dateData: { date: Date.now() },
             }
         }

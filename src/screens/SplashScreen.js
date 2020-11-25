@@ -14,7 +14,7 @@ export default class SplashScreen extends React.Component {
         return (
             <View testID={'loading'} style={styles.container}>
                 <Text style={styles.text}>
-                    Agenda SUS
+                    {'Agenda SUS'}
                 </Text>
                 <ActivityIndicator color={COLORS.azulSus} size={'large'} />
             </View>

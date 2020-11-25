@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, StyleSheet, View, Keyboard } from "react-native";
+import { Alert, StyleSheet, View, Keyboard } from 'react-native';
 import {
     Text,
     Button,
@@ -113,7 +113,7 @@ export default class CreateAccountScreen extends React.Component {
         const shouldShow = [STATUS.PROGRESS, STATUS.SUCCESS, STATUS.ERROR].includes(this.state.requestStatus);
         return (
             <View style={{ display: 'flex', paddingHorizontal: 10 }} >
-                <Text style={styles.headerText}>Para liberar seu acesso, precisamos que nos informe alguns dados sobre você.</Text>
+                <Text style={styles.headerText}>{'Para liberar seu acesso, precisamos que nos informe alguns dados sobre você.'}</Text>
                 <View
                 >
                     <Input
@@ -145,7 +145,7 @@ export default class CreateAccountScreen extends React.Component {
                         leftIcon={{ type: 'material-community', name: 'email', color: COLORS.defaultGray }}
                     />
                     <UserPasswordInput ref={this.passwordField} password={this.state.password} onChangeText={password => this.setState({ password })} returnKeyType={'done'} blurOnSubmit={false} onSubmitEditing={Keyboard.dismiss} />
-                    <Button buttonStyle={styles.loginBtn} title='Cadastrar' disabled={shouldShow} onPress={this.startRegistry} />
+                    <Button buttonStyle={styles.loginBtn} title={'Cadastrar'} disabled={shouldShow} onPress={this.startRegistry} />
                 </View>
             </View>
         );
@@ -155,9 +155,9 @@ export default class CreateAccountScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     loginBtn: { backgroundColor: COLORS.azulSus },
     forgotPassword: { display: 'flex', alignSelf: 'flex-end' },

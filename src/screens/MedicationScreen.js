@@ -10,7 +10,7 @@ export default class MedicationScreen extends React.Component {
     render() {
         return (
             <Text text30>
-                Medicamentos  que você deve tomar
+                {'Medicamentos  que você deve tomar'}
             </Text>
         );
     }
