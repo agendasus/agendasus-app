@@ -17,6 +17,8 @@ import AddAppointmentSummaryScreen from './AddAppointmentSummaryScreen';
 
 import { COLORS } from '../../constants';
 
+import * as Remote from '../../database/Remote';
+
 export default class AddAppointmentScreen extends React.Component {
 
     static propTypes = {
@@ -31,6 +33,7 @@ export default class AddAppointmentScreen extends React.Component {
             typeData: null,
             dateData: null,
             currentIndex: 0,
+            sending: false,
         };
         this.swiperField = React.createRef();
     }
@@ -72,8 +75,16 @@ export default class AddAppointmentScreen extends React.Component {
     }
 
     sendAppointmentRequest = () => {
-        alert('Seu agendamento foi realizado.');
-        this.props.navigation.goBack();
+        this.setState({ sending: true }, async () => {
+            const result = await Remote.sendAppointmentRequest();
+            if (result) {
+                alert('Seu agendamento foi realizado.');
+                this.props.navigation.goBack();
+                return;
+            }
+            alert('Não foi possível realizar seu agendamento. Tente novamente.');
+            this.setState({ sending: false });
+        });
     }
 
     mountFooter = () => {
@@ -88,10 +99,11 @@ export default class AddAppointmentScreen extends React.Component {
                             reverseColor={'white'}
                             color={COLORS.azulSus}
                             type={'material-community'}
-                            name={'arrow-left-thick'} />
+                            name={'arrow-left-thick'}
+                            disabled={this.state.sending} />
                     </View>
                     <View flex-2 center>
-                        <Button buttonStyle={styles.confirmBtn} title={'Confirmar'} onPress={this.sendAppointmentRequest} />
+                        <Button disabled={this.state.sending} buttonStyle={styles.confirmBtn} title={'Confirmar'} onPress={this.sendAppointmentRequest} />
                     </View>
                 </View>
             );
@@ -105,7 +117,8 @@ export default class AddAppointmentScreen extends React.Component {
                     reverseColor={'white'}
                     color={COLORS.azulSus}
                     type={'material-community'}
-                    name={'arrow-left-thick'} />
+                    name={'arrow-left-thick'}
+                />
             </View>
         );
     }

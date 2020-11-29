@@ -15,27 +15,18 @@ import * as Remote from '../../database/Remote';
 export default class AddAppointmentTypeScreen extends PureComponent {
 
     static propTypes = {
-        item: PropTypes.object.isRequired,
         goToNext: PropTypes.func.isRequired,
     };
 
     state = {
         appointmentTypes: [],
-        selectedIndex: null,
         loading: true,
     }
 
     async componentDidMount() {
         const appointmentTypes = await Remote.getAppointmentTypes();
-        this.setState({ appointmentTypes });
+        this.setState({ appointmentTypes, loading: false, });
     }
-
-    selectType = selectedIndex => {
-        this.setState({
-            selectedIndex,
-        });
-    }
-
 
     goToNext = item => {
         this.props.goToNext(item);
@@ -52,7 +43,7 @@ export default class AddAppointmentTypeScreen extends PureComponent {
                         this.state.loading ? <ActivityIndicator color={COLORS.azulSus} size='large' />
                             :
                             this.state.appointmentTypes.map(item => (
-                                <AppointmentTypeListItem key={item.id} item={item} />
+                                <AppointmentTypeListItem key={item.id} item={item} onPress={this.goToNext} />
                             ))
                     }
                 </View>

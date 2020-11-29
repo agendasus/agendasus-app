@@ -238,7 +238,7 @@ export const getAppointmentTypes = () => new Promise((resolve) => {
 
 export const getAppointmentLocal = (searchValue) => new Promise((resolve) => {
   console.log('searchValue', searchValue);
-  const local = [{ id: 'local0', name: 'Hospital ABC - Rua principal da cidade' }, { id: 'local1', name: 'Hospital XYZ - Rua inventada' }, { id: 'local2', name: 'Posto de saúde da Barra - Rua da barra' }, { id: 'local3', name: 'Hospital leste oeste - Rua XV de Novembro' }, { id: 'local4', name: 'Hospital Bahia Sul - Rua desconhecida' }, { id: 'local5', name: 'Algum outro local' }, { id: 'local6', name: 'Imagina um local aqui' }, { id: 'local7', name: 'Um local bem legal aqui' }, { id: 'local8', name: 'Hospital do Batman' }];
+  const local = [{ id: 'local0', name: 'Igreja de Santa Maria no fundo do aveleiro branco perto de um redemoinho rápido e da Igreja de São Tisílio da gruta vermelha' }, { id: 'local1', name: 'Hospital XYZ - Rua inventada' }, { id: 'local2', name: 'Posto de saúde da Barra - Rua da barra' }, { id: 'local3', name: 'Hospital leste oeste - Rua XV de Novembro' }, { id: 'local4', name: 'Hospital Bahia Sul - Rua desconhecida' }, { id: 'local5', name: 'Algum outro local' }, { id: 'local6', name: 'Imagina um local aqui' }, { id: 'local7', name: 'Um local bem legal aqui' }, { id: 'local8', name: 'Hospital ABC - Rua principal da cidade' }];
   setTimeout(() => {
     resolve(local);
   }, 200);
@@ -258,3 +258,10 @@ export const getAvailableDates = (localId) => new Promise((resolve) => {
     resolve(local);
   }, 200);
 });
+
+export const sendAppointmentRequest = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(true);
+  }, 2000);
+});
+

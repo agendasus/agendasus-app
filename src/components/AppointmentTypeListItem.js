@@ -25,7 +25,7 @@ export default class AppointmentTypeListItem extends PureComponent {
         const { item } = this.props;
         return (
             <Card key={item.id} center marginV-10 style={styles.container}
-                onPress={this.props.onPress}
+                onPress={this.onPress}
             >
                 <Icon name={item.icon} size={30} color={COLORS.azulSus} />
                 <Text>{item.name}</Text>

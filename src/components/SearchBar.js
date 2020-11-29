@@ -45,7 +45,7 @@ export default class SearchBar extends PureComponent {
     render() {
         return (
             <ScrollView keyboardShouldPersistTaps={'always'} >
-                <View row >
+                <View row>
                     <View bottom style={styles.header}>
                         <TextInput
                             style={styles.headerInput}
@@ -54,22 +54,24 @@ export default class SearchBar extends PureComponent {
                             value={this.state.searchValue}
                         />
                     </View>
-                    <View flex center>
+                    <View center>
                         {
-                            !this.state.searchValue
+                            !!this.state.searchValue
                             &&
                             (
-                                <Icon
-                                    type={'material-community'}
-                                    name={'close'}
-                                    containerStyle={styles.closeIconContainerStyle}
-                                    size={20} color={'black'}
-                                    onPress={this.onClearSearchField}
-                                />
+                                <View flex center style={styles.headerInput}>
+
+                                    <Icon
+                                        type={'material-community'}
+                                        name={'close'}
+                                        containerStyle={styles.closeIconContainerStyle}
+                                        size={20} color={'black'}
+                                        onPress={this.onClearSearchField}
+                                    />
+                                </View>
                             )
                         }
                     </View>
-
                 </View >
             </ScrollView >
         );
@@ -77,7 +79,7 @@ export default class SearchBar extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-    header: { flex: .9 },
+    header: { flex: 1 },
     headerInput: { borderBottomWidth: 1, fontSize: 20, },
     closeIconContainerStyle: { paddingHorizontal: 10 },
 });

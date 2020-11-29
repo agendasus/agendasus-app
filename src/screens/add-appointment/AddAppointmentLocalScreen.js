@@ -48,7 +48,6 @@ export default class AddAppointmentLocalScreen extends PureComponent {
     renderItem = ({ item }) => {
         return (
             <AppointmentLocalListItem item={item} onPress={this.selectLocal} />
-
         );
     }
 
