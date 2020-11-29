@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -62,7 +63,7 @@ export default class AddAppointmentScreen extends React.Component {
         this.swiperField.current.scrollBy(1);
     }
 
-    gotBack = () => {
+    goBack = () => {
         this.swiperField.current.scrollBy(-1);
     }
 
@@ -78,10 +79,10 @@ export default class AddAppointmentScreen extends React.Component {
     mountFooter = () => {
         if (this.state.currentIndex === 3) {
             return (
-                <View center style={{ borderWidth: 0, height: '10%' }}>
-                    <View absL left style={{ borderWidth: 0, }}>
+                <View center style={styles.footerContainer}>
+                    <View absL left>
                         <Icon
-                            onPress={this.gotBack}
+                            onPress={this.goBack}
                             raised
                             reverse
                             reverseColor={'white'}
@@ -90,15 +91,15 @@ export default class AddAppointmentScreen extends React.Component {
                             name={'arrow-left-thick'} />
                     </View>
                     <View flex-2 center>
-                        <Button buttonStyle={{ backgroundColor: COLORS.azulSus, width: 200 }} title={'Confirmar'} onPress={this.sendAppointmentRequest} />
+                        <Button buttonStyle={styles.confirmBtn} title={'Confirmar'} onPress={this.sendAppointmentRequest} />
                     </View>
                 </View>
             );
         }
         return (
-            <View center style={{ borderWidth: 0, height: '10%', alignSelf: 'flex-start' }}>
+            <View center style={styles.backBtn}>
                 <Icon
-                    onPress={this.gotBack}
+                    onPress={this.goBack}
                     raised
                     reverse
                     reverseColor={'white'}
@@ -127,3 +128,9 @@ export default class AddAppointmentScreen extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    footerContainer: { borderWidth: 0, height: '10%' },
+    confirmBtn: { backgroundColor: COLORS.azulSus, width: 200 },
+    backBtn: { borderWidth: 0, height: '10%', alignSelf: 'flex-start' },
+});

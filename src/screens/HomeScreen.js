@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import {
     View,
     Button,
@@ -62,7 +62,7 @@ export default class HomeScreen extends React.Component {
                 activeScale={0.98}
                 key={item.id}
                 width={'100%'}
-                style={{ marginRight: 10, borderColor: COLORS.azulSus, borderWidth: 1 }}
+                style={styles.appointmentTypeItem}
                 centerV
                 centerH
             >
@@ -79,30 +79,27 @@ export default class HomeScreen extends React.Component {
     render() {
         const { name, login } = this.props.route.params;
         return (
-            <View flex paddingH-20 paddingV-20 backgroundColor={'white'} style={{ borderWidth: 0 }}>
-                <View style={{ borderWidth: 0 }}>
+            <View flex paddingH-20 paddingV-20 backgroundColor={'white'}>
+                <View>
                     <Text text50 color={COLORS.azulSus} >
                         {'Olá'}
                     </Text>
-                    <Text text50 color={COLORS.azulSus} style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
+                    <Text text50 color={COLORS.azulSus} style={styles.userName}>
                         {name}
                     </Text>
                     <Text text80 color={COLORS.azulSus} >
                         {login}
                     </Text>
                 </View>
-                <View flex style={{ borderWidth: 0, borderColor: 'red' }}>
+                <View flex>
                     <Image
                         center
                         source={{ uri: 'https://image.freepik.com/free-vector/people-sitting-hospital-corridor-waiting-doctor-patient-clinic-visit-flat-vector-illustration-medicine-healthcare_74855-8507.jpg', }}
                         //TODO melhor colocar essa definição de estilo em um arquivo, nao?
-                        style={{
-                            height: 250,
-                            width: '100%',
-                        }}
+                        style={styles.img}
                         resizeMode={'contain'}
                     />
-                    <View style={{ width: '100%', height: '80%', borderWidth: 0 }}>
+                    <View style={styles.list}>
                         <FlatList
                             numColumns={3}
                             data={DATA}
@@ -111,10 +108,17 @@ export default class HomeScreen extends React.Component {
                         />
                     </View>
                 </View>
-                <View style={{ borderWidth: 0, borderColor: 'green' }}>
+                <View>
                     <Button link linkColor={COLORS.azulSus} label={'SAIR'} onPress={this.signOut} />
                 </View>
             </View >
         );
     }
 }
+
+const styles = StyleSheet.create({
+    appointmentTypeItem: { marginRight: 10, borderColor: COLORS.azulSus, borderWidth: 1 },
+    userName: { textTransform: 'capitalize', fontWeight: 'bold' },
+    img: { height: 250, width: '100%', },
+    list: { width: '100%', height: '80%', borderWidth: 0 },
+});

@@ -86,7 +86,7 @@ export default class ResetPasswordScreen extends React.Component {
             STATUS.ERROR,
         ].includes(requestStatus);
         return (
-            <View style={{ display: 'flex', paddingHorizontal: 10 }} >
+            <View style={styles.container} >
                 <Text style={styles.headerText}>
                     {'Você esqueceu sua senha? Não tem problema. Nos diga qual o usuário você deseja redefinir a senha.'}
                 </Text>
@@ -115,15 +115,7 @@ export default class ResetPasswordScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    container: { display: 'flex', paddingHorizontal: 10 },
     loginBtn: { backgroundColor: COLORS.azulSus },
-    forgotPassword: { display: 'flex', alignSelf: 'flex-end' },
-    createAccount: { display: 'flex', flexDirection: 'row', alignSelf: 'flex-end' },
-    createAccountText: { fontSize: 18, paddingVertical: 20 },
     headerText: { fontSize: 22, paddingBottom: 20 },
 });

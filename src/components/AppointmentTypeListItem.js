@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
+    StyleSheet,
+} from 'react-native';
+import {
     Text,
     Card,
 } from 'react-native-ui-lib';
@@ -21,7 +24,7 @@ export default class AppointmentTypeListItem extends PureComponent {
     render() {
         const { item } = this.props;
         return (
-            <Card key={item.id} center marginV-10 style={{ elevation: 10, width: 150, height: 150 }}
+            <Card key={item.id} center marginV-10 style={styles.container}
                 onPress={this.props.onPress}
             >
                 <Icon name={item.icon} size={30} color={COLORS.azulSus} />
@@ -31,3 +34,6 @@ export default class AppointmentTypeListItem extends PureComponent {
     }
 }
 
+const styles = StyleSheet.create({
+    container: { elevation: 10, width: 150, height: 150 },
+});

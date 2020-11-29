@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Keyboard, ScrollView, TextInput } from 'react-native';
+import { Keyboard, ScrollView, TextInput, StyleSheet } from 'react-native';
 import {
     View,
 } from 'react-native-ui-lib';
@@ -27,7 +27,6 @@ export default class SearchBar extends PureComponent {
         this.search = debounce(this.search.bind(this), SEARCH_DELAY);
     }
 
-
     search(text) {
         this.props?.search(text);
     }
@@ -43,20 +42,19 @@ export default class SearchBar extends PureComponent {
         this.search('');
     }
 
-
     render() {
         return (
             <ScrollView keyboardShouldPersistTaps={'always'} >
                 <View row >
-                    <View bottom style={{ flex: .9 }}>
+                    <View bottom style={styles.header}>
                         <TextInput
-                            style={{ borderBottomWidth: 1, fontSize: 20, }}
+                            style={styles.headerInput}
                             placeholder={'Procure por um local'}
                             onChangeText={this.onChangeText}
                             value={this.state.searchValue}
                         />
                     </View>
-                    <View flex center style={{ flex: .1 }}>
+                    <View flex center>
                         {
                             !this.state.searchValue
                             &&
@@ -64,7 +62,7 @@ export default class SearchBar extends PureComponent {
                                 <Icon
                                     type={'material-community'}
                                     name={'close'}
-                                    containerStyle={{ paddingHorizontal: 10 }}
+                                    containerStyle={styles.closeIconContainerStyle}
                                     size={20} color={'black'}
                                     onPress={this.onClearSearchField}
                                 />
@@ -77,3 +75,9 @@ export default class SearchBar extends PureComponent {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    header: { flex: .9 },
+    headerInput: { borderBottomWidth: 1, fontSize: 20, },
+    closeIconContainerStyle: { paddingHorizontal: 10 },
+});

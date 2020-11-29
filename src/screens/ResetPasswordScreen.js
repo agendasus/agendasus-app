@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import UserPasswordInput from '../components/UserPasswordInput';
-import { ROUTES, COLORS, STATUS } from '../constants';
+import { ROUTES, STATUS } from '../constants';
 import * as  Remote from '../database/Remote';
 
 export default class ForgotPasswordScreen extends React.Component {
@@ -101,7 +101,7 @@ export default class ForgotPasswordScreen extends React.Component {
 
     render() {
         return (
-            <View style={{ display: 'flex', paddingHorizontal: 10 }} >
+            <View style={styles.container} >
                 <Text style={styles.headerText}>{'Para continuar, precisamos que você insira a nova senha.'}</Text>
                 <UserPasswordInput ref={this.passwordField} onChangeText={this.onChangePassword} password={this.state.password} />
                 <Button buttonStyle={styles.loginBtn} title={'Redefinir senha'} disabled={this.state.requestStatus === STATUS.PROGRESS} onPress={this.sendResetPasswordRequest} />
@@ -111,16 +111,6 @@ export default class ForgotPasswordScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    loginBtn: { backgroundColor: COLORS.azulSus },
-    forgotPassword: { display: 'flex', alignSelf: 'flex-end' },
-    createAccount: { display: 'flex', flexDirection: 'row', alignSelf: 'flex-end' },
-    createAccountText: { fontSize: 18, paddingVertical: 20 },
-    headerText: { fontSize: 22, paddingBottom: 20 },
+    container: { display: 'flex', paddingHorizontal: 10 },
 });
 

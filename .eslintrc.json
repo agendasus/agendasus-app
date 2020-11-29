@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "react-native/react-native": true
     },
     "extends": [
         "eslint:recommended",
@@ -33,13 +34,31 @@
         "react/jsx-uses-vars": 2,
         "no-undef": 2,
         "semi": 2,
+        "react/jsx-wrap-multilines": [
+            "error",
+            {
+                "declaration": "parens",
+                "assignment": "parens",
+                "return": "parens",
+                "arrow": "parens",
+                "condition": "ignore",
+                "logical": "ignore",
+                "prop": "ignore"
+            }
+        ],
         "react/prop-types": 2,
         "react/jsx-no-bind": 2,
         "react/jsx-no-duplicate-props": 2,
         "comma-dangle": 0,
         "react/display-name": 1,
         "no-unused-vars": "warn",
-        "no-unexpected-multiline": "warn"
+        "no-unexpected-multiline": "warn",
+        "react-native/no-unused-styles": 2,
+        "react-native/split-platform-components": 2,
+        "react-native/no-inline-styles": 2,
+        "react-native/no-color-literals": 2,
+        "react-native/no-raw-text": 2,
+        "react-native/no-single-element-style-arrays": 2
     },
     "settings": {
         "react": {

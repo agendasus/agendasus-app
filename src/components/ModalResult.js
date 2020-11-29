@@ -9,13 +9,14 @@ import {
     Modal,
     ActivityIndicator,
     Image,
+    StyleSheet
 } from 'react-native';
 
 import { COLORS, STATUS } from '../constants';
 
 export default class ModalResult extends PureComponent {
     static propTypes = {
-        requestStatus: PropTypes.oneOf([STATUS.PROGRESS, STATUS.ERROR, STATUS.SUCCESS]).isRequired,
+        requestStatus: PropTypes.oneOf([STATUS.PROGRESS, STATUS.ERROR, STATUS.SUCCESS, STATUS.INITIAL]).isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.func.isRequired,
         close: PropTypes.func.isRequired,
@@ -39,11 +40,7 @@ export default class ModalResult extends PureComponent {
             <View flex center paddingH-30 >
                 <Image source={icone}
                     //TODO colocar os estilos em um arquivo separado
-                    style={{
-                        width: 80,
-                        height: 80,
-                        borderWidth: 1,
-                    }}
+                    style={styles.img}
                     tintColor={corIcone}
                     resizeMode={'contain'}
                 />
@@ -71,3 +68,11 @@ export default class ModalResult extends PureComponent {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    img: {
+        width: 80,
+        height: 80,
+        borderWidth: 1,
+    },
+});

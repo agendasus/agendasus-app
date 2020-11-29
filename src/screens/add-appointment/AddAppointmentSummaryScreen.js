@@ -43,8 +43,8 @@ export default class AddAppointmentSummaryScreen extends PureComponent {
         <Text text50 color={COLORS.azulSus}>
           Verifique os dados do seu agendamento e se estiver tudo certo, confirme o agendamento.
         </Text>
-        <View height={130} style={{ borderWidth: 0 }}>
-          <View flex left padding-10 backgroundColor="#E8E8E8" style={{ borderRadius: 10 }}>
+        <View height={130}>
+          <View flex left padding-10 backgroundColor="#E8E8E8">
             <View paddingB-10 row left>
               <Icon type="material-community" name="clipboard-plus-outline" />
               <Text marginL-10 text50>{this.props.data.typeData?.name}</Text>

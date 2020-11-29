@@ -104,21 +104,22 @@ export default class LoginScreen extends React.Component {
         this.setState({ serverAddr });
     }
 
+    /* eslint-disable react-native/no-raw-text*/
     mountChangeServerPrompt = () => {
         return (
             <View>
                 <Dialog.Container visible={this.state.showServerAddAlert}>
-                    <Dialog.Title>Endereço do servidor</Dialog.Title>
+                    <Dialog.Title>{'Endereço do servidor'}</Dialog.Title>
                     <Dialog.Description>
-                        heroku: agendasus-auth.herokuapp.com
-                        local: IP:PORTA
+                        {'heroku: agendasus-auth.herokuapp.com local: IP:PORTA'}
                     </Dialog.Description>
-                    <Dialog.Input wrapperStyle={{ borderWidth: 1 }} value={this.state.serverAddr} onChangeText={this.onChangeServerAddr} placeholder={'Endereço do servidor'} />
+                    <Dialog.Input wrapperStyle={styles.serverInput} value={this.state.serverAddr} onChangeText={this.onChangeServerAddr} placeholder={'Endereço do servidor'} />
                     <Dialog.Button label='OK' onPress={this.changeServer} />
                 </Dialog.Container>
             </View>
         );
     }
+    /*eslint-enable*/
 
     setShowServerAddAlert = () => {
         this.setState({ showServerAddAlert: true });
@@ -139,15 +140,15 @@ export default class LoginScreen extends React.Component {
     render() {
         const textLinkColor = this.state.sendingRequest ? COLORS.cinzaDesabilitado : COLORS.azulSus;
         return (
-            <View style={{ display: 'flex', paddingHorizontal: 10 }} >
+            <View style={styles.container} >
                 {this.mountChangeServerPrompt()}
-                <View style={{ display: 'flex', alignItems: 'center' }}  >
-                    <Text style={{ fontWeight: 'bold', fontSize: 40, color: COLORS.azulSus }} > Agenda</Text>
+                <View style={styles.header}  >
+                    <Text style={styles.headerText} > Agenda</Text>
                     <TouchableWithoutFeedback onPress={this.setShowServerAddAlert}>
                         <Image
                             source={require('../../assets/Logo_SUS.png')}
                             //TODO melhor colocar essa definição de estilo em um arquivo, nao?
-                            style={{ width: 200, height: 100 }}
+                            style={styles.headerLogo}
                             resizeMode={'contain'}
                         />
                     </TouchableWithoutFeedback>
@@ -166,8 +167,9 @@ export default class LoginScreen extends React.Component {
                         onSubmitEditing={this.setFocurOnPasswordField}
                         blurOnSubmit={false}
                         errorMessage={this.state.userError}
+                        editable={!this.state.sendingRequest}
                     />
-                    <UserPasswordInput ref={this.passwordField} onChangeText={this.onChangePassword} password={this.state.password} />
+                    <UserPasswordInput editable={!this.state.sendingRequest} ref={this.passwordField} onChangeText={this.onChangePassword} password={this.state.password} />
                     <TouchableWithoutFeedback onPress={this.goToForgotPasswordScreen}>
                         <Text style={[styles.forgotPassword, styles.linkText, { color: textLinkColor }]} >{'Esqueci minha senha'}</Text>
                     </TouchableWithoutFeedback>
@@ -187,15 +189,14 @@ export default class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    container: { display: 'flex', paddingHorizontal: 10 },
     loginBtn: { backgroundColor: COLORS.azulSus },
     forgotPassword: { display: 'flex', alignSelf: 'flex-end' },
     createAccount: { display: 'flex', flexDirection: 'row', alignSelf: 'flex-end' },
     createAccountText: { fontSize: 18, paddingVertical: 20 },
     linkText: { fontSize: 18, paddingBottom: 20 },
+    header: { display: 'flex', alignItems: 'center' },
+    headerText: { fontWeight: 'bold', fontSize: 40, color: COLORS.azulSus },
+    headerLogo: { width: 200, height: 100 },
+    serverInput: { borderWidth: 1 },
 });

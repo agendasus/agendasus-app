@@ -128,7 +128,7 @@ export default class CreateAccountScreen extends React.Component {
     render() {
         const shouldShow = [STATUS.PROGRESS, STATUS.SUCCESS, STATUS.ERROR].includes(this.state.requestStatus);
         return (
-            <View style={{ display: 'flex', paddingHorizontal: 10 }} >
+            <View style={styles.container} >
                 <Text style={styles.headerText}>{'Para liberar seu acesso, precisamos que nos informe alguns dados sobre você.'}</Text>
                 <View
                 >
@@ -169,15 +169,7 @@ export default class CreateAccountScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    container: { display: 'flex', paddingHorizontal: 10 },
     loginBtn: { backgroundColor: COLORS.azulSus },
-    forgotPassword: { display: 'flex', alignSelf: 'flex-end' },
-    createAccount: { display: 'flex', flexDirection: 'row', alignSelf: 'flex-end' },
-    createAccountText: { fontSize: 18, paddingVertical: 20 },
     headerText: { fontSize: 22, paddingBottom: 20 },
 });

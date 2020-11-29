@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator, ScrollView, View, Alert, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, ScrollView, View, Alert, TouchableWithoutFeedback, TouchableOpacity, StyleSheet } from 'react-native';
 import {
     Text,
 } from 'react-native-ui-lib';
@@ -92,32 +92,16 @@ export default class AppointmentScreen extends React.Component {
                 useNative
                 key={item.id}
                 width={'100%'}
-                style={{
-                    elevation: 2,
-                    paddingStart: 5,
-                    flex: 1,
-                    borderWidth: 0,
-                    borderColor: COLORS.azulSus,
-                    backgroundColor: '#f4f6fc',
-                    flexDirection: 'row',
-                    borderTopStartRadius: 10,
-                    borderBottomStartRadius: 10,
-                    borderRadius: 10,
-                }}
+                style={styles.appointmentItem}
             >
-                <View style={{
-                    borderWidth: 0,
-                    flex: .8,
-                    marginRight: 5,
-                    justifyContent: 'space-evenly',
-                }}>
-                    <Text text60 dark10 style={{ fontWeight: 'bold' }}>
+                <View style={styles.appointmentItemContent}>
+                    <Text text60 dark10 style={styles.fontBold}>
                         {item.name}
                     </Text>
                     <Text text60 dark30>
                         {item.specialty}
                     </Text>
-                    <Text text60 dark30 style={{ fontWeight: 'bold' }}>
+                    <Text text60 dark30 style={styles.fontBold}>
                         {formatDateAndTime(item.date)}
                     </Text>
                     <Text text60 dark30 lineBreakMode={'tail'} ellipsizeMode={'tail'} numberOfLines={1}>
@@ -130,19 +114,14 @@ export default class AppointmentScreen extends React.Component {
     renderFABEmptyArea = () => {
         return (
             <View
-                style={{
-                    flexDirection: 'row',
-                    height: 90,
-                }}>
+                style={styles.fabEmpty}>
             </View>
         );
     }
     renderItemSeparator = () => {
         return (
             <View
-                style={{
-                    height: 15,
-                }}>
+                style={styles.listItemSeparator}>
             </View>
         );
     }
@@ -168,28 +147,20 @@ export default class AppointmentScreen extends React.Component {
         const buttons = ['Hoje', 'Amanhã', 'Esta semana', 'Próximo mês', 'Personalizado'];
         return (
             <View
-                style={{
-                    flex: 1,
-                    width: '100%',
-                    height: 60,
-                    backgroundColor: 'white',
-                }}>
-                <ScrollView style={{
-                    backgroundColor: 'white',
-                    width: '100%',
-                }}
+                style={styles.searchBarContainer}>
+                <ScrollView style={styles.searchBarContent}
                     showsHorizontalScrollIndicator={false}
                     horizontal
                 >
                     <ButtonGroup
                         Component={TouchableWithoutFeedback}
                         selectMultiple
-                        innerBorderStyle={{ width: 0, }}
-                        containerStyle={{ borderWidth: 0, width: '100%', flex: 1, justifyContent: 'space-between' }}
+                        innerBorderStyle={styles.filterInnerBorderStyle}
+                        containerStyle={styles.filterContainerStyle}
                         onPress={this.updateFilter}
                         buttons={buttons}
-                        buttonStyle={{ borderColor: COLORS.azulSus, borderWidth: 1, width: 100, borderRadius: 30, marginRight: 5 }}
-                        buttonContainerStyle={{ height: '100%' }}
+                        buttonStyle={styles.filterButtonStyle}
+                        buttonContainerStyle={styles.filterButtonContainerStyle}
                         textStyle={{ color: COLORS.azulSus }}
                         selectedButtonStyle={{ backgroundColor: COLORS.azulSus }}
                         selectedIndexes={this.state.selectedFilters}
@@ -206,7 +177,7 @@ export default class AppointmentScreen extends React.Component {
     keyExtractor = item => item.id.toString();
     render() {
         return (
-            <View backgroundColor={'white'} style={{ flex: 1, borderWidth: 0, paddingHorizontal: 10 }}>
+            <View backgroundColor={'white'} style={styles.container}>
                 {
                     this.state.loading ?
                         <ActivityIndicator color={COLORS.azulSus} size='large' />
@@ -230,17 +201,17 @@ export default class AppointmentScreen extends React.Component {
                     <View backgroundColor={'transparent'} >
                         <Text text60>{'Você deseja:'}</Text>
                         <TouchableOpacity onPress={this.confirmEvent}>
-                            <View style={{ width: '100%', padding: 10, marginVertical: 5 }}>
+                            <View style={styles.confirmOption}>
                                 <Icon name={'check'} size={30} />
-                                <Text centerV centerH center text70 style={{ paddingLeft: 10, textAlign: 'center', textAlignVertical: 'center', paddingBottom: 1 }}>
+                                <Text centerV centerH center text70 style={styles.confirmOptionText}>
                                     {'Confirmar'}
                                 </Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={this.cancelEvent}>
-                            <View style={{ width: '100%', padding: 10, marginVertical: 5 }}>
+                            <View style={styles.cancelOption}>
                                 <Icon name={'close'} size={30} color={'#FF563D'} />
-                                <Text centerV centerH center red30 text70 style={{ paddingLeft: 10, textAlign: 'center', textAlignVertical: 'center', paddingBottom: 1 }}>
+                                <Text centerV centerH center red30 text70 style={styles.cancelOptionText}>
                                     {'Desmarcar'}
                                 </Text>
                             </View>
@@ -251,3 +222,51 @@ export default class AppointmentScreen extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    appointmentItem: {
+        elevation: 2,
+        paddingStart: 5,
+        flex: 1,
+        borderWidth: 0,
+        borderColor: COLORS.azulSus,
+        backgroundColor: COLORS.lightGray,
+        flexDirection: 'row',
+        borderTopStartRadius: 10,
+        borderBottomStartRadius: 10,
+        borderRadius: 10,
+    },
+    appointmentItemContent: {
+        borderWidth: 0,
+        flex: .8,
+        marginRight: 5,
+        justifyContent: 'space-evenly',
+    },
+    fontBold: { fontWeight: 'bold' },
+    fabEmpty: {
+        flexDirection: 'row',
+        height: 90,
+    },
+    listItemSeparator: {
+        height: 15,
+    },
+    searchBarContainer: {
+        flex: 1,
+        width: '100%',
+        height: 60,
+        backgroundColor: COLORS.white,
+    },
+    searchBarContent: {
+        backgroundColor: COLORS.white,
+        width: '100%',
+    },
+    filterInnerBorderStyle: { width: 0, },
+    filterContainerStyle: { borderWidth: 0, width: '100%', flex: 1, justifyContent: 'space-between' },
+    filterButtonStyle: { borderColor: COLORS.azulSus, borderWidth: 1, width: 100, borderRadius: 30, marginRight: 5 },
+    filterButtonContainerStyle: { height: '100%' },
+    container: { flex: 1, borderWidth: 0, paddingHorizontal: 10 },
+    confirmOption: { width: '100%', padding: 10, marginVertical: 5 },
+    confirmOptionText: { paddingLeft: 10, textAlign: 'center', textAlignVertical: 'center', paddingBottom: 1 },
+    cancelOption: { width: '100%', padding: 10, marginVertical: 5 },
+    cancelOptionText: { paddingLeft: 10, textAlign: 'center', textAlignVertical: 'center', paddingBottom: 1 },
+});
