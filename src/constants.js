@@ -19,6 +19,8 @@ export const COLORS = {
   defaultGray: '#86939e',
   lightGray: '#f4f6fc',
   white: 'white',
+  red: 'red',
+  green: 'green',
 };
 
 export const STATUS = {

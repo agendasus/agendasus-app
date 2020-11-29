@@ -60,7 +60,6 @@ export default class ForgotPasswordScreen extends React.Component {
         this.props.navigation.navigate(ROUTES.login);
     }
 
-    //TODO de novo? acho bom centralizar e reaproveitar
     showSuccessAlert = () => {
         Alert.alert(
             'Sucesso ao redefinir a senha',
@@ -72,7 +71,6 @@ export default class ForgotPasswordScreen extends React.Component {
         );
     }
 
-    //TODO de novo? acho bom centralizar e reaproveitar
     showGeneralErrorAlert = () => {
         Alert.alert(
             'Falha ao redefinir a senha',

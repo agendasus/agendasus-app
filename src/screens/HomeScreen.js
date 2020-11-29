@@ -95,7 +95,6 @@ export default class HomeScreen extends React.Component {
                     <Image
                         center
                         source={{ uri: 'https://image.freepik.com/free-vector/people-sitting-hospital-corridor-waiting-doctor-patient-clinic-visit-flat-vector-illustration-medicine-healthcare_74855-8507.jpg', }}
-                        //TODO melhor colocar essa definição de estilo em um arquivo, nao?
                         style={styles.img}
                         resizeMode={'contain'}
                     />

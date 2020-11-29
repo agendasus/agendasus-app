@@ -60,7 +60,7 @@ export default class AppointmentScreen extends React.Component {
             'Presença confirmada',
             'Legal, sua presença está confirmada.',
             [
-                { text: 'OK', onPress: () => console.log('OK Pressed') }
+                { text: 'OK' }
             ],
             { cancelable: false }
         );
@@ -70,7 +70,7 @@ export default class AppointmentScreen extends React.Component {
             'Presença cancelada',
             'Que pena, sua presença foi cancelada.',
             [
-                { text: 'OK', onPress: () => console.log('OK Pressed') }
+                { text: 'OK' }
             ],
             { cancelable: false }
         );

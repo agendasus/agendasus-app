@@ -83,7 +83,6 @@ export default class LoginScreen extends React.Component {
         );
     }
 
-    //TODO de novo????
     showGeneralErrorAlert = () => {
         Alert.alert(
             'Falha ao entrar',
@@ -147,7 +146,6 @@ export default class LoginScreen extends React.Component {
                     <TouchableWithoutFeedback onPress={this.setShowServerAddAlert}>
                         <Image
                             source={require('../../assets/Logo_SUS.png')}
-                            //TODO melhor colocar essa definição de estilo em um arquivo, nao?
                             style={styles.headerLogo}
                             resizeMode={'contain'}
                         />

@@ -32,14 +32,12 @@ export default class ModalResult extends PureComponent {
                 </>
             );
         }
-        //TODO essas cores nao podem ficar assim, tem que ir pra constante
-        const corIcone = this.props.requestStatus === STATUS.ERROR ? 'red' : 'green';
+        const corIcone = this.props.requestStatus === STATUS.ERROR ? COLORS.red : COLORS.green;
         //TODO ficou meio estranho, repensar isso aqui - talvez criar um componente com cada imagem
         const icone = this.props.requestStatus === STATUS.ERROR ? require('../../assets/baseline_error_black_48.png') : require('../../assets/baseline_done_black_48.png');
         return (
             <View flex center paddingH-30 >
                 <Image source={icone}
-                    //TODO colocar os estilos em um arquivo separado
                     style={styles.img}
                     tintColor={corIcone}
                     resizeMode={'contain'}

@@ -12,6 +12,8 @@ import { COLORS, STATUS } from '../constants';
 
 import * as  Remote from '../database/Remote';
 
+const requiredFieldText = 'Este campo é obrigatório';
+
 export default class CreateAccountScreen extends React.Component {
 
     static propTypes = {
@@ -40,7 +42,7 @@ export default class CreateAccountScreen extends React.Component {
     checkFillingRequiredFields = () => {
         const { name, email } = this.state;
         let nameError, emailError;
-        const requiredFieldText = 'Este campo é obrigatório';
+
         if (!name) {
             nameError = requiredFieldText;
         }
@@ -56,11 +58,11 @@ export default class CreateAccountScreen extends React.Component {
     startRegistry = () => {
         const { name, email, password } = this.state;
         if (!name) {
-            this.setState({ nameError: 'Este campo é obrigatório' });
+            this.setState({ nameError: requiredFieldText });
             return;
         }
         if (!email) {
-            this.setState({ nameError: 'Este campo é obrigatório' });
+            this.setState({ nameError: requiredFieldText });
             return;
         }
         const hasRequiredFieldsUnfilled = this.checkFillingRequiredFields();
@@ -91,19 +93,17 @@ export default class CreateAccountScreen extends React.Component {
         this.setState({ situacao: STATUS.PROGRESS }, sendRegistryRequest);
     }
 
-    //TODO de novo? acho bom centralizar e reaproveitar
     showGeneralErrorAlert = () => {
         Alert.alert(
             'Falha ao cadastrar',
             'Não foi possível cadastrar seu usário. Tente novamente em alguns instantes.',
             [
-                { text: 'OK', onPress: () => console.log('OK Pressed') }
+                { text: 'OK' }
             ],
             { cancelable: false }
         );
     }
 
-    //TODO de novo? acho bom centralizar e reaproveitar
     showSuccessAlert = () => {
         Alert.alert(
             'Sucesso ao cadastrar',

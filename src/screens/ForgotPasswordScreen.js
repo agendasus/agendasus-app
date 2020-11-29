@@ -26,7 +26,7 @@ export default class ResetPasswordScreen extends React.Component {
     startResetPasswordProccess = async () => {
         const { user } = this.state;
         let userError = '';
-        //TODO de novo? é bom centralizar hein
+
         const requiredFieldText = 'Este campo é obrigatório';
         if (!user) {
             userError = requiredFieldText;
