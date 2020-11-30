@@ -67,5 +67,5 @@ export default class AddAppointmentSummaryScreen extends PureComponent {
 
 
 const styles = StyleSheet.create({
-  content: { padding: 10 },
+  content: { padding: 10, borderRadius: 10 },
 });

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ActivityIndicator, } from 'react-native';
+import { ActivityIndicator, StyleSheet, } from 'react-native';
 import {
     Text,
     View,
@@ -38,7 +38,7 @@ export default class AddAppointmentTypeScreen extends PureComponent {
                 <Text text50 color={COLORS.azulSus}>
                     {'Qual tipo de agendamento você precisa?'}
                 </Text>
-                <View marginT-10 center >
+                <View flex marginT-10 center style={styles.content}>
                     {
                         this.state.loading ? <ActivityIndicator color={COLORS.azulSus} size='large' />
                             :
@@ -51,3 +51,7 @@ export default class AddAppointmentTypeScreen extends PureComponent {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    content: { justifyContent: 'space-evenly' },
+});

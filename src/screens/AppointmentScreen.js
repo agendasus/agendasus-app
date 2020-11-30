@@ -143,7 +143,7 @@ export default class AppointmentScreen extends React.Component {
         });
     }
 
-    MySearchBar = () => {
+    mountSearchBar = () => {
         const buttons = ['Hoje', 'Amanhã', 'Esta semana', 'Próximo mês', 'Personalizado'];
         return (
             <View
@@ -190,7 +190,7 @@ export default class AppointmentScreen extends React.Component {
                             ListFooterComponent={this.renderFABEmptyArea}
                             ItemSeparatorComponent={this.renderItemSeparator}
                         >
-                            {this.MySearchBar()}
+                            {this.mountSearchBar()}
                         </HeaderWithSearch>
                 }
                 <FAB

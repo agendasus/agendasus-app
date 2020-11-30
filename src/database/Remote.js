@@ -188,7 +188,8 @@ const DATA = [
 
 export const getAppointments = () => new Promise((resolve) => {
   setTimeout(() => {
-    resolve(DATA);
+    // resolve(DATA);
+    resolve([]);
   }, 200);
 });
 

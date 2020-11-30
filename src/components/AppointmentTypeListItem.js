@@ -35,5 +35,5 @@ export default class AppointmentTypeListItem extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: { elevation: 10, width: 150, height: 150 },
+    container: { elevation: 10, width: 150, height: 150, padding: 10, margin: 10 },
 });
